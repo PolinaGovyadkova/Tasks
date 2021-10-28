@@ -4,11 +4,11 @@ using System.Runtime.InteropServices;
 // Управление общими сведениями о сборке осуществляется с помощью указанного ниже
 // набора атрибутов. Измените значения этих атрибутов, чтобы изменить сведения,
 // общие сведения об этой сборке.
-[assembly: AssemblyTitle("ChessManagerTests")]
+[assembly: AssemblyTitle("ChessManagerTests1")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("ChessManagerTests")]
+[assembly: AssemblyProduct("ChessManagerTests1")]
 [assembly: AssemblyCopyright("Copyright ©  2021")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -19,7 +19,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // Следующий GUID служит для идентификации библиотеки типов, если этот проект будет видимым для COM
-[assembly: Guid("a3f7e961-10d0-48f0-852c-a4515ed690c2")]
+[assembly: Guid("b0a188cc-3ec9-4856-b98d-a5dc685bd1a8")]
 
 // Сведения о версии сборки состоят из следующих четырех значений:
 //

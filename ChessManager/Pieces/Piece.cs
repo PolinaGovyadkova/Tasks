@@ -15,5 +15,6 @@
         public abstract string IdentifyColor();
 
         public abstract Piece Clone();
+      
     }
 }

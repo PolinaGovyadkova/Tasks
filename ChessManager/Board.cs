@@ -62,22 +62,22 @@ namespace ChessManager
             return checkResult;
         }
 
-        private string CheckMove(int fromColumnPosition, int fromRowPosition, int toColumnPosition, int toRowPosition, TypeOfPlayer blackWhiteTurn, bool verifyCheck)
+        public string CheckMove(int fromColumnPosition, int fromRowPosition, int toColumnPosition, int toRowPosition, TypeOfPlayer blackWhiteTurn, bool verifyCheck)
         {
             if (!CheckBounds(fromColumnPosition, fromRowPosition, toColumnPosition, toRowPosition)) { return "Values out of bounds!"; }
 
             if (fromColumnPosition == toColumnPosition && fromRowPosition == toRowPosition) { return "You can't move to the same position!"; }
 
             var movingPiece = _boardArray[fromColumnPosition, fromRowPosition];
-            if (movingPiece == null) { return "There is no piece at (" + fromColumnPosition + "," + fromRowPosition + ")."; }
+            if (movingPiece == null) { return "There is no piece."; }
 
-            if (movingPiece.PlayerColor != blackWhiteTurn) { return "The piece at (" + fromColumnPosition + "," + fromRowPosition + ") is not yours!"; }
+            if (movingPiece.PlayerColor != blackWhiteTurn) { return "The piece is not yours!"; }
 
             var targetPiece = _boardArray[toColumnPosition, toRowPosition];
             if ((targetPiece != null) && targetPiece.PlayerColor == blackWhiteTurn) { return "You can't kill your Pieces!"; }
 
             var validationResult = movingPiece.ValidMovement(this, fromColumnPosition, fromRowPosition, toColumnPosition, toRowPosition);
-            if (validationResult == "INVALID") { return "The piece can't move to (" + toColumnPosition + "," + toRowPosition + ")"; }
+            if (validationResult == "INVALID") { return "The piece can't move"; }
 
             if (verifyCheck)
             {
@@ -196,7 +196,7 @@ namespace ChessManager
         public bool CheckForPromotionAvaliable(TypeOfPlayer playerColor)
         {
             int y;
-            y = playerColor == TypeOfPlayer.White ? 0 : 7; ;
+            y = playerColor == TypeOfPlayer.White ? 0 : 7;
             for (var x = 0; x < 8; x++)
             {
                 if (

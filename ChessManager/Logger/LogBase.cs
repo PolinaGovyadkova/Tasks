@@ -1,13 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ChessManager.Logger
+﻿namespace ChessManager.Logger
 {
+    /// <summary>
+    /// LogBase
+    /// </summary>
     public abstract class LogBase
     {
-        public abstract void Log(string Messsage);
+        /// <summary>
+        /// Logs the specified messsage.
+        /// </summary>
+        /// <param name="messsage">The messsage.</param>
+        public abstract void Log(string messsage);
     }
 }

@@ -4,11 +4,18 @@ using ChessManager.Visual;
 
 namespace ChessManager.GameProcess
 {
-    public class Game
+    /// <summary>
+    /// ChessGame
+    /// </summary>
+    public class ChessGame
     {
+        /// <summary>
+        /// Creates a new chess game.
+        /// </summary>
+        /// <returns></returns>
         public string StartGame()
         {
-            var game = new ChessGame(new View());
+            var game = new Game(new View());
             while (!game.Board.NoPossibleMove(game.BlackWhiteTurn))
             {
                 game.PlayTurn();
@@ -24,14 +31,33 @@ namespace ChessManager.GameProcess
             return "This game is over!";
         }
 
-        private class ChessGame
+        /// <summary>
+        /// Game
+        /// </summary>
+        private class Game
         {
+            /// <summary>
+            /// The black white turn
+            /// </summary>
             public TypeOfPlayer BlackWhiteTurn;
+            /// <summary>
+            /// The board
+            /// </summary>
             public readonly Board Board;
+            /// <summary>
+            /// The view
+            /// </summary>
             private readonly IView _view;
+            /// <summary>
+            /// The visualization
+            /// </summary>
             private readonly Visualization _visualization;
 
-            public ChessGame(IView view)
+            /// <summary>
+            /// Initializes a new instance of the <see cref="ChessGame"/> class.
+            /// </summary>
+            /// <param name="view">The view.</param>
+            public Game(IView view)
             {
                 Board = new Board();
 
@@ -40,6 +66,9 @@ namespace ChessManager.GameProcess
                 _visualization = new Visualization(_view, Board);
             }
 
+            /// <summary>
+            /// Pawns the promotion.
+            /// </summary>
             private void PawnPromotion()
             {
                 if (Board.CheckForPromotionAvaliable(BlackWhiteTurn))
@@ -54,6 +83,9 @@ namespace ChessManager.GameProcess
                 }
             }
 
+            /// <summary>
+            /// Changes the turn.
+            /// </summary>
             public void ChangeTurn()
             {
                 switch (BlackWhiteTurn)
@@ -72,6 +104,9 @@ namespace ChessManager.GameProcess
                 }
             }
 
+            /// <summary>
+            /// Start the next turn.
+            /// </summary>
             public void PlayTurn()
             {
                 Board.PrintBoard();
@@ -93,13 +128,27 @@ namespace ChessManager.GameProcess
                 }
             }
 
+            /// <summary>
+            /// Returns a hash code for this instance.
+            /// </summary>
+            /// <returns>
+            /// A hash code for this instance, suitable for use in hashing algorithms and data structures like a hash table. 
+            /// </returns>
             public override int GetHashCode()
             {
                 int hash = 0;
-                var game = new ChessGame(new View());
-                unchecked { hash += game.GetHashCode(); };
+                var game = new Game(new View());
+                unchecked { hash += game.GetHashCode(); }
+
                 return hash;
             }
+            /// <summary>
+            /// Determines whether the specified <see cref="System.Object" />, is equal to this instance.
+            /// </summary>
+            /// <param name="obj">The <see cref="System.Object" /> to compare with this instance.</param>
+            /// <returns>
+            ///   <c>true</c> if the specified <see cref="System.Object" /> is equal to this instance; otherwise, <c>false</c>.
+            /// </returns>
             public override bool Equals(object obj)
             {
                 return !(obj is ChessGame game);

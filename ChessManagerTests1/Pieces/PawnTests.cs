@@ -5,9 +5,16 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace ChessManagerTests1.Pieces
 {
+    /// <summary>
+    /// PawnTests
+    /// </summary>
+    /// <seealso cref="ChessManagerTests1.Pieces.PieceTest" />
     [TestClass()]
     public class PawnTests : PieceTest
     {
+        /// <summary>
+        /// Valids the movement test.
+        /// </summary>
         [TestMethod()]
         public override void ValidMovementTest()
         {
@@ -20,6 +27,9 @@ namespace ChessManagerTests1.Pieces
             }
         }
 
+        /// <summary>
+        /// Clones the test.
+        /// </summary>
         [TestMethod()]
         public void CloneTest()
         {

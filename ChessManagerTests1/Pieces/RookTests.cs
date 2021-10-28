@@ -5,9 +5,16 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace ChessManagerTests1.Pieces
 {
+    /// <summary>
+    /// RookTests
+    /// </summary>
+    /// <seealso cref="ChessManagerTests1.Pieces.PieceTest" />
     [TestClass()]
     public class RookTests : PieceTest
     {
+        /// <summary>
+        /// Valids the movement test.
+        /// </summary>
         [TestMethod()]
         public override void ValidMovementTest()
         {
@@ -18,6 +25,9 @@ namespace ChessManagerTests1.Pieces
             Chek(7, typeOfPlayer == TypeOfPlayer.White ? 0 : 7, piece, board);
         }
 
+        /// <summary>
+        /// Clones the test.
+        /// </summary>
         [TestMethod()]
         public void CloneTest()
         {

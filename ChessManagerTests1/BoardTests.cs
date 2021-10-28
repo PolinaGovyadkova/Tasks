@@ -6,12 +6,25 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace ChessManagerTests1
 {
+    /// <summary>
+    /// BoardTests
+    /// </summary>
     [TestClass()]
     public class BoardTests
     {
+        /// <summary>
+        /// The piece
+        /// </summary>
         private Piece _piece;
+        /// <summary>
+        /// The board
+        /// </summary>
         private Board _board = new Board();
 
+        /// <summary>
+        /// Randoms the color of player.
+        /// </summary>
+        /// <returns></returns>
         public TypeOfPlayer RandomColorOfPlayer()
         {
             Random rnd = new Random();
@@ -19,6 +32,9 @@ namespace ChessManagerTests1
             return value == 1 ? TypeOfPlayer.White : TypeOfPlayer.Black;
         }
 
+        /// <summary>
+        /// Checks the move test.
+        /// </summary>
         [TestMethod()]
         public void CheckMoveTest()
         {
@@ -62,24 +78,36 @@ namespace ChessManagerTests1
             }
         }
 
+        /// <summary>
+        /// Determines whether [is in check test].
+        /// </summary>
         [TestMethod()]
         public void IsInCheckTest()
         {
             Assert.IsFalse(_board.IsInCheck(RandomColorOfPlayer()));
         }
 
+        /// <summary>
+        /// Noes the possible move test.
+        /// </summary>
         [TestMethod()]
         public void NoPossibleMoveTest()
         {
             Assert.IsFalse(_board.NoPossibleMove(RandomColorOfPlayer()));
         }
 
+        /// <summary>
+        /// Checks for promotion avaliable test.
+        /// </summary>
         [TestMethod()]
         public void CheckForPromotionAvaliableTest()
         {
             Assert.IsFalse(_board.CheckForPromotionAvaliable(RandomColorOfPlayer()));
         }
 
+        /// <summary>
+        /// Applies the promotion test.
+        /// </summary>
         [TestMethod()]
         public void ApplyPromotionTest()
         {

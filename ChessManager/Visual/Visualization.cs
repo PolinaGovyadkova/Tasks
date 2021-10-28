@@ -6,18 +6,39 @@ using ChessManager.Logger;
 
 namespace ChessManager.Visual
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class Visualization
     {
+        /// <summary>
+        /// The logger
+        /// </summary>
         private LoggerChess.Logger logger = new LoggerChess.Logger("Log.txt");
+        /// <summary>
+        /// The view
+        /// </summary>
         private readonly IView _view;
+        /// <summary>
+        /// The board
+        /// </summary>
         private readonly Board _board;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Visualization"/> class.
+        /// </summary>
+        /// <param name="view">The view.</param>
+        /// <param name="board">The board.</param>
         public Visualization(IView view, Board board)
         {
             this._view = view;
             this._board = board;
         }
 
+        /// <summary>
+        /// Chooses the piece for promotion.
+        /// </summary>
+        /// <returns></returns>
         public int ChoosePieceForPromotion()
         {
             _view.Show("Choose the promotion:");
@@ -37,10 +58,16 @@ namespace ChessManager.Visual
                 logger.Log(result.ToString());
             }
             catch (FormatException e) { _view.Show(e.ToString()); }
-            catch (IOException e) { _view.Show(e.ToString()); };
+            catch (IOException e) { _view.Show(e.ToString()); }
+
             return result;
         }
 
+        /// <summary>
+        /// Inputs the move.
+        /// </summary>
+        /// <param name="blackWhiteTurn">The black white turn.</param>
+        /// <returns></returns>
         public string InputMove(TypeOfPlayer blackWhiteTurn)
         {
             try
@@ -72,6 +99,10 @@ namespace ChessManager.Visual
             }
         }
 
+        /// <summary>
+        /// Prints the turn.
+        /// </summary>
+        /// <param name="blackWhiteTurn">The black white turn.</param>
         public void PrintTurn(TypeOfPlayer blackWhiteTurn)
         {
             if (blackWhiteTurn == TypeOfPlayer.White)
@@ -86,6 +117,10 @@ namespace ChessManager.Visual
             }
         }
 
+        /// <summary>
+        /// Prints the specified black white turn.
+        /// </summary>
+        /// <param name="blackWhiteTurn">The black white turn.</param>
         public void Print(TypeOfPlayer blackWhiteTurn)
         {
             if (_board.IsInCheck(blackWhiteTurn))
@@ -93,6 +128,12 @@ namespace ChessManager.Visual
                 _view.Show("CHECK!");
             }
         }
+        /// <summary>
+        /// Returns a hash code for this instance.
+        /// </summary>
+        /// <returns>
+        /// A hash code for this instance, suitable for use in hashing algorithms and data structures like a hash table. 
+        /// </returns>
         public override int GetHashCode()
         {
             int hash = 0;
@@ -100,6 +141,13 @@ namespace ChessManager.Visual
             unchecked { hash += visualization.GetHashCode(); }
             return hash;
         }
+        /// <summary>
+        /// Determines whether the specified <see cref="System.Object" />, is equal to this instance.
+        /// </summary>
+        /// <param name="obj">The <see cref="System.Object" /> to compare with this instance.</param>
+        /// <returns>
+        ///   <c>true</c> if the specified <see cref="System.Object" /> is equal to this instance; otherwise, <c>false</c>.
+        /// </returns>
         public override bool Equals(object obj)
         {
             return !(obj is Visualization);

@@ -6,11 +6,28 @@ using ChessManager.Pieces;
 
 namespace ChessManagerTests1.Pieces
 {
+    /// <summary>
+    /// PieceTest
+    /// </summary>
+    /// <seealso cref="ChessManagerTests1.Pieces.IPieceTest" />
     public abstract class PieceTest : IPieceTest
     {
+        /// <summary>
+        /// The piece
+        /// </summary>
         public Piece piece;
+        /// <summary>
+        /// The board
+        /// </summary>
         public Board board;
 
+        /// <summary>
+        /// Cheks the specified x.
+        /// </summary>
+        /// <param name="x">The x.</param>
+        /// <param name="y">The y.</param>
+        /// <param name="piece">The piece.</param>
+        /// <param name="board">The board.</param>
         public void Chek(int x, int y, Piece piece, Board board)
         {
             for (int i = 0; i < 7; i++)
@@ -29,6 +46,10 @@ namespace ChessManagerTests1.Pieces
             }
         }
 
+        /// <summary>
+        /// Randoms the color of player.
+        /// </summary>
+        /// <returns></returns>
         public TypeOfPlayer RandomColorOfPlayer()
         {
             Random rnd = new Random();
@@ -36,6 +57,11 @@ namespace ChessManagerTests1.Pieces
             return value == 1 ? TypeOfPlayer.White : TypeOfPlayer.Black;
         }
 
+        /// <summary>
+        /// Randoms the piece.
+        /// </summary>
+        /// <param name="typeOfPlayer">The type of player.</param>
+        /// <returns></returns>
         public Piece RandomPiece(TypeOfPlayer typeOfPlayer)
         {
             Random rnd = new Random();
@@ -50,6 +76,9 @@ namespace ChessManagerTests1.Pieces
             return new Bishop(typeOfPlayer);
         }
 
+        /// <summary>
+        /// Valids the movement test.
+        /// </summary>
         public abstract void ValidMovementTest();
     }
 }

@@ -4,10 +4,19 @@ using ChessManager.Pieces;
 
 namespace ChessManager
 {
+    /// <summary>
+    /// Board
+    /// </summary>
     public class Board
     {
+        /// <summary>
+        /// The board array
+        /// </summary>
         private readonly Piece[,] _boardArray;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Board"/> class.
+        /// </summary>
         public Board()
         {
             _boardArray = new Piece[8, 8];
@@ -34,12 +43,23 @@ namespace ChessManager
             _boardArray[7, 7] = new Rook(TypeOfPlayer.Black);
         }
 
+        /// <summary>
+        /// Getter method of the board elements.
+        /// </summary>
+        /// <param name="x">The x.</param>
+        /// <param name="y">The y.</param>
+        /// <returns></returns>
         public Piece GetPiece(int x, int y) => _boardArray[x, y];
 
+        /// <summary>
+        /// Board constructor for simulating scenarios. Creates a copy of a board.
+        /// </summary>
+        /// <param name="boardArrayInput">The board array input.</param>
         public Board(Piece[,] boardArrayInput)
         {
+            // Creating the board;
             _boardArray = new Piece[8, 8];
-
+            // Setting up the board;
             for (var x = 0; x < 8; x++)
             {
                 for (var y = 0; y < 8; y++)
@@ -52,10 +72,19 @@ namespace ChessManager
             }
         }
 
+        /// <summary>
+        /// Check the move from (x1,y1) to (x2,y2) and execute if possible.
+        /// </summary>
+        /// <param name="fromColumnPosition">From column position.</param>
+        /// <param name="fromRowPosition">From row position.</param>
+        /// <param name="toColumnPosition">To column position.</param>
+        /// <param name="toRowPosition">To row position.</param>
+        /// <param name="blackWhiteTurn">The black white turn.</param>
+        /// <returns></returns>
         public string Move(int fromColumnPosition, int fromRowPosition, int toColumnPosition, int toRowPosition, TypeOfPlayer blackWhiteTurn)
         {
             var checkResult = CheckMove(fromColumnPosition, fromRowPosition, toColumnPosition, toRowPosition, blackWhiteTurn, true);
-
+           
             if (CheckValid(checkResult))
             {
                 ApplyMove(fromColumnPosition, fromRowPosition, toColumnPosition, toRowPosition, checkResult);
@@ -64,8 +93,19 @@ namespace ChessManager
             return checkResult;
         }
 
+        /// <summary>
+        /// Check if the move from (x1,y1) to (x2,y2) is possible.
+        /// </summary>
+        /// <param name="fromColumnPosition">From column position.</param>
+        /// <param name="fromRowPosition">From row position.</param>
+        /// <param name="toColumnPosition">To column position.</param>
+        /// <param name="toRowPosition">To row position.</param>
+        /// <param name="blackWhiteTurn">The black white turn.</param>
+        /// <param name="verifyCheck">if set to <c>true</c> [verify check].</param>
+        /// <returns></returns>
         public string CheckMove(int fromColumnPosition, int fromRowPosition, int toColumnPosition, int toRowPosition, TypeOfPlayer blackWhiteTurn, bool verifyCheck)
         {
+
             if (!CheckBounds(fromColumnPosition, fromRowPosition, toColumnPosition, toRowPosition)) { return "Values out of bounds!"; }
 
             if (fromColumnPosition == toColumnPosition && fromRowPosition == toRowPosition) { return "You can't move to the same position!"; }
@@ -91,6 +131,14 @@ namespace ChessManager
             return validationResult;
         }
 
+        /// <summary>
+        /// Move the piece from (x1,y1) to (x2,y2).
+        /// </summary>
+        /// <param name="fromColumnPosition">From column position.</param>
+        /// <param name="fromRowPosition">From row position.</param>
+        /// <param name="toColumnPosition">To column position.</param>
+        /// <param name="toRowPosition">To row position.</param>
+        /// <param name="checkResult">The check result.</param>
         protected void ApplyMove(int fromColumnPosition, int fromRowPosition, int toColumnPosition, int toRowPosition, string checkResult)
         {
             _boardArray[toColumnPosition, toRowPosition] = _boardArray[fromColumnPosition, fromRowPosition];
@@ -104,17 +152,41 @@ namespace ChessManager
             _boardArray[toColumnPosition, toRowPosition].Moved(this, fromColumnPosition, fromRowPosition, toColumnPosition, toRowPosition);
         }
 
+        /// <summary>
+        /// Checks the valid.
+        /// </summary>
+        /// <param name="checkResult">The check result.</param>
+        /// <returns></returns>
         private static bool CheckValid(string checkResult) => checkResult == "VALID" || checkResult == "EN_PASSANT";
 
+        /// <summary>
+        /// Check if the given coordinates are valid.
+        /// </summary>
+        /// <param name="fromColumnPosition">From column position.</param>
+        /// <param name="fromRowPosition">From row position.</param>
+        /// <param name="toColumnPosition">To column position.</param>
+        /// <param name="toRowPosition">To row position.</param>
+        /// <returns></returns>
         private static bool CheckBounds(int fromColumnPosition, int fromRowPosition, int toColumnPosition, int toRowPosition)
         {
-            if (fromColumnPosition < 0 || fromColumnPosition > 7) { return false; };
-            if (fromRowPosition < 0 || fromRowPosition > 7) { return false; };
-            if (toColumnPosition < 0 || toColumnPosition > 7) { return false; };
-            if (toRowPosition < 0 || toRowPosition > 7) { return false; };
+            if (fromColumnPosition < 0 || fromColumnPosition > 7) { return false; }
+
+            if (fromRowPosition < 0 || fromRowPosition > 7) { return false; }
+
+            if (toColumnPosition < 0 || toColumnPosition > 7) { return false; }
+
+            if (toRowPosition < 0 || toRowPosition > 7) { return false; }
+
             return true;
         }
 
+        /// <summary>
+        /// Check if the king is safe from attacks.
+        /// </summary>
+        /// <param name="playerColor">Color of the player.</param>
+        /// <returns>
+        ///   <c>true</c> if [is in check] [the specified player color]; otherwise, <c>false</c>.
+        /// </returns>
         public bool IsInCheck(TypeOfPlayer playerColor)
         {
             var kingX = -1;
@@ -138,13 +210,18 @@ namespace ChessManager
             {
                 for (var y = 0; y < 8; y++)
                 {
-                    if (CheckValid(CheckMove(x, y, kingX, kingY, playerColor, false))) { return true; };
+                    if (CheckValid(CheckMove(x, y, kingX, kingY, playerColor, false))) { return true; }
                 }
             }
 
             return false;
         }
 
+        /// <summary>
+        /// Check if the player have a possible move.
+        /// </summary>
+        /// <param name="playerColor">Color of the player.</param>
+        /// <returns></returns>
         public bool NoPossibleMove(TypeOfPlayer playerColor)
         {
             for (var fromColumnPosition = 0; fromColumnPosition < 8; fromColumnPosition++)
@@ -155,7 +232,7 @@ namespace ChessManager
                     {
                         for (var toRowPosition = 0; toRowPosition < 8; toRowPosition++)
                         {
-                            if (CheckValid(CheckMove(fromColumnPosition, fromRowPosition, toColumnPosition, toRowPosition, playerColor, true))) { return false; };
+                            if (CheckValid(CheckMove(fromColumnPosition, fromRowPosition, toColumnPosition, toRowPosition, playerColor, true))) { return false; }
                         }
                     }
                 }
@@ -163,6 +240,9 @@ namespace ChessManager
             return true;
         }
 
+        /// <summary>
+        /// Prints the board to the player.
+        /// </summary>
         public void PrintBoard()
         {
             Console.WriteLine("Y\\X 0  1  2  3  4  5  6  7");
@@ -177,6 +257,10 @@ namespace ChessManager
             }
         }
 
+        /// <summary>
+        /// Clears the condition of the pawns (that belongs to the team passed by parameter) that flags that they are liable to be captured by "En Passant" move.
+        /// </summary>
+        /// <param name="playerColor">Color of the player.</param>
         public void ClearEnPassingAllows(TypeOfPlayer playerColor)
         {
             for (var x = 0; x < 8; x++)
@@ -195,6 +279,11 @@ namespace ChessManager
             }
         }
 
+        /// <summary>
+        /// Check if some Pawn (that belongs to the team passed by parameter) has reached the final line.
+        /// </summary>
+        /// <param name="playerColor">Color of the player.</param>
+        /// <returns></returns>
         public bool CheckForPromotionAvaliable(TypeOfPlayer playerColor)
         {
             int y;
@@ -213,6 +302,12 @@ namespace ChessManager
             return false;
         }
 
+        /// <summary>
+        /// Promotes the Pawn that reached the final line to the piece selected by the user.
+        /// </summary>
+        /// <param name="selectedPiece">The selected piece.</param>
+        /// <param name="playerColor">Color of the player.</param>
+        /// <returns></returns>
         public bool ApplyPromotion(int selectedPiece, TypeOfPlayer playerColor)
         {
             var y = playerColor == TypeOfPlayer.White ? 0 : 7;
@@ -230,6 +325,12 @@ namespace ChessManager
             return true;
         }
 
+        /// <summary>
+        /// Returns a hash code for this instance.
+        /// </summary>
+        /// <returns>
+        /// A hash code for this instance, suitable for use in hashing algorithms and data structures like a hash table. 
+        /// </returns>
         public override int GetHashCode()
         {
             var hash = 0;
@@ -237,11 +338,18 @@ namespace ChessManager
             {
                 for (var j = 0; j < 8; j++)
                 {
-                    unchecked { hash += _boardArray[i, j].GetHashCode(); };
+                    unchecked { hash += _boardArray[i, j].GetHashCode(); }
                 }
             }
             return hash;
         }
+        /// <summary>
+        /// Determines whether the specified <see cref="System.Object" />, is equal to this instance.
+        /// </summary>
+        /// <param name="obj">The <see cref="System.Object" /> to compare with this instance.</param>
+        /// <returns>
+        ///   <c>true</c> if the specified <see cref="System.Object" /> is equal to this instance; otherwise, <c>false</c>.
+        /// </returns>
         public override bool Equals(object obj)
         {
             if (obj is Board board)

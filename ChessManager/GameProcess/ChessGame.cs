@@ -1,4 +1,8 @@
-﻿namespace ChessManager
+﻿using ChessManager.Enum;
+using ChessManager.Interfaces;
+using ChessManager.Visual;
+
+namespace ChessManager.GameProcess
 {
     public class Game
     {
@@ -87,6 +91,18 @@
                         break;
                     }
                 }
+            }
+
+            public override int GetHashCode()
+            {
+                int hash = 0;
+                var game = new ChessGame(new View());
+                unchecked { hash += game.GetHashCode(); };
+                return hash;
+            }
+            public override bool Equals(object obj)
+            {
+                return !(obj is ChessGame game);
             }
         }
     }

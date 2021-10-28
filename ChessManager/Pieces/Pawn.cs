@@ -1,6 +1,7 @@
 ﻿using System;
+using ChessManager.Enum;
 
-namespace ChessManager
+namespace ChessManager.Pieces
 {
     public class Pawn : Piece
     {

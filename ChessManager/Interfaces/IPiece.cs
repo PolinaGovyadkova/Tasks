@@ -1,4 +1,4 @@
-﻿namespace ChessManager
+﻿namespace ChessManager.Interfaces
 {
     internal interface IPiece
     {

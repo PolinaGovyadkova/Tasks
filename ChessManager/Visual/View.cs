@@ -1,6 +1,7 @@
 ﻿using System;
+using ChessManager.Interfaces;
 
-namespace ChessManager
+namespace ChessManager.Visual
 {
     public class View : IView
     {

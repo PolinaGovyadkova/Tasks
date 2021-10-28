@@ -1,7 +1,10 @@
 ﻿using System;
 using System.IO;
+using ChessManager.Enum;
+using ChessManager.Interfaces;
+using ChessManager.Logger;
 
-namespace ChessManager
+namespace ChessManager.Visual
 {
     public class Visualization
     {
@@ -89,6 +92,17 @@ namespace ChessManager
             {
                 _view.Show("CHECK!");
             }
+        }
+        public override int GetHashCode()
+        {
+            int hash = 0;
+            var visualization = new Visualization(new View(), _board);
+            unchecked { hash += visualization.GetHashCode(); }
+            return hash;
+        }
+        public override bool Equals(object obj)
+        {
+            return !(obj is Visualization);
         }
     }
 }

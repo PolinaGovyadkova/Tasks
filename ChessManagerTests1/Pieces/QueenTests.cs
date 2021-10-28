@@ -1,4 +1,6 @@
 ﻿using ChessManager;
+using ChessManager.Enum;
+using ChessManager.Pieces;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace ChessManagerTests1.Pieces

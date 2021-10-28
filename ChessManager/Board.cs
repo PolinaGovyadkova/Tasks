@@ -1,4 +1,6 @@
 ﻿using System;
+using ChessManager.Enum;
+using ChessManager.Pieces;
 
 namespace ChessManager
 {
@@ -223,6 +225,36 @@ namespace ChessManager
                     else if (selectedPiece == 3) { _boardArray[x, y] = new Bishop(playerColor); }
                     else if (selectedPiece == 4) { _boardArray[x, y] = new Knight(playerColor); }
                     else { return false; }
+                }
+            }
+            return true;
+        }
+
+        public override int GetHashCode()
+        {
+            var hash = 0;
+            for (var i = 0; i < 8; i++)
+            {
+                for (var j = 0; j < 8; j++)
+                {
+                    unchecked { hash += _boardArray[i, j].GetHashCode(); };
+                }
+            }
+            return hash;
+        }
+        public override bool Equals(object obj)
+        {
+            if (obj is Board board)
+            {
+                for (var i = 0; i < 8; i++)
+                {
+                    for (var j = 0; j < 8; j++)
+                    {
+                        if (_boardArray[i, j] != board._boardArray[i, j])
+                        {
+                            return false;
+                        }
+                    }
                 }
             }
             return true;

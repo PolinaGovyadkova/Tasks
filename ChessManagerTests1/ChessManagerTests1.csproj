@@ -57,6 +57,7 @@
   </Choose>
   <ItemGroup>
     <Compile Include="BoardTests.cs" />
+    <Compile Include="Logger\LoggerTests.cs" />
     <Compile Include="Pieces\IPieceTest.cs" />
     <Compile Include="Pieces\KingTests.cs" />
     <Compile Include="Pieces\KnightTests.cs" />

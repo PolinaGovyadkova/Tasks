@@ -7,7 +7,7 @@ namespace Game
     {
         private static void Main(string[] args)
         {
-            ChessManager.Game game = new ChessManager.Game();
+            ChessManager.GameProcess.Game game = new ChessManager.GameProcess.Game();
             Console.WriteLine(game.StartGame());
             try
             {

@@ -1,4 +1,4 @@
-﻿namespace ChessManager
+﻿namespace ChessManager.Enum
 {
     public enum TypeOfPlayer
     {

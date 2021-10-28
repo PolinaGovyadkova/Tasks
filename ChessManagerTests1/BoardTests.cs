@@ -1,7 +1,10 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
+﻿using System;
+using ChessManager;
+using ChessManager.Enum;
+using ChessManager.Pieces;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace ChessManager.Tests
+namespace ChessManagerTests1
 {
     [TestClass()]
     public class BoardTests

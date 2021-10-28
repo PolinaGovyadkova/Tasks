@@ -1,15 +1,10 @@
 ﻿using System;
 using System.IO;
 
-namespace ChessManager
+namespace ChessManager.Logger
 {
     public class LoggerChess
     {
-        public abstract class LogBase
-        {
-            public abstract void Log(string Messsage);
-        }
-
         public class Logger : LogBase
         {
             private string CurrentDirectory { get; }

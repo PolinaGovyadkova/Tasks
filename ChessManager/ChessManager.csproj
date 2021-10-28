@@ -84,6 +84,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Logger\LogBase.cs" />
     <Compile Include="Pieces\Bishop.cs" />
     <Compile Include="Board.cs" />
     <Compile Include="Interfaces\IPiece.cs" />

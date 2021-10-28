@@ -1,4 +1,6 @@
-﻿namespace ChessManager
+﻿using ChessManager.Enum;
+
+namespace ChessManager.Pieces
 {
     public class Rook : Piece
     {

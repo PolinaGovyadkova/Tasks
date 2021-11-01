@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace CargoProduct.Foods
 {
@@ -11,6 +7,7 @@ namespace CargoProduct.Foods
         public Milk(double payloadCapacity, double volume) : base(payloadCapacity, volume)
         {
         }
-        public int[] Temperature => new int[] { 3, 4, 5 };
+
+        public List<int> Temperature => new List<int> { 3, 4, 5 };
     }
 }

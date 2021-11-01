@@ -4,16 +4,17 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{7EF90152-6DD1-4A1E-B71C-72FFDDB541A5}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Transport</RootNamespace>
-    <AssemblyName>Transport</AssemblyName>
+    <ProjectGuid>{3A2B2261-BE75-4008-A119-128C9034A7DE}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>ConsoleApp</RootNamespace>
+    <AssemblyName>ConsoleApp</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -23,6 +24,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -41,22 +43,24 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Coupling.cs" />
-    <Compile Include="ITransport.cs" />
-    <Compile Include="Trailer\Refrigerated.cs" />
-    <Compile Include="Trailer\Semitrailer.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Trailer\Tanker.cs" />
-    <Compile Include="Trailer\Tilt.cs" />
-    <Compile Include="TruckTractors\IvecoSWay.cs" />
-    <Compile Include="TruckTractors\MercedesBenzActros.cs" />
-    <Compile Include="TruckTractors\TruckTractor.cs" />
-    <Compile Include="TruckTractors\VolvoFHISave.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CargoProduct\CargoProduct.csproj">
-      <Project>{799ED900-A273-4F6B-8A6D-80F991706B8F}</Project>
+      <Project>{799ed900-a273-4f6b-8a6d-80f991706b8f}</Project>
       <Name>CargoProduct</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TransportCompany\TransportCompany.csproj">
+      <Project>{f9f949cc-9d0c-4b2b-bc6b-f8e0cc4253c3}</Project>
+      <Name>TransportCompany</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Transport\Transport.csproj">
+      <Project>{7ef90152-6dd1-4a1e-b71c-72ffddb541a5}</Project>
+      <Name>Transport</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

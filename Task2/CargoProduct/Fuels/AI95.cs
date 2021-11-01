@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace CargoProduct.Fuels
+﻿namespace CargoProduct.Fuels
 {
     public class AI95 : Fuel
     {

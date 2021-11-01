@@ -1,14 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace CargoProduct
+﻿namespace CargoProduct
 {
     public abstract class Cargo
     {
+        protected Cargo(double payloadCapacity, double volume)
+        {
+            PayloadCapacity = payloadCapacity;
+            Volume = volume;
+        }
+
         public abstract double PayloadCapacity { get; set; }
         public abstract double Volume { get; set; }
+
+        public override string ToString()
+        {
+            return $"Груз {GetType().Name} объёмом {Volume} и массой {PayloadCapacity}";
+        }
     }
 }

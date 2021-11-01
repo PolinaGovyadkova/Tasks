@@ -42,6 +42,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Cargo.cs" />
+    <Compile Include="Chemicals\Chemicals.cs" />
+    <Compile Include="Clothes\Clothes.cs" />
     <Compile Include="Foods\Fish.cs" />
     <Compile Include="Foods\Food.cs" />
     <Compile Include="Foods\Milk.cs" />
@@ -49,8 +51,10 @@
     <Compile Include="Fuels\AI95.cs" />
     <Compile Include="Fuels\DT.cs" />
     <Compile Include="Fuels\Fuel.cs" />
-    <Compile Include="ITemperature.cs" />
+    <Compile Include="Foods\ITemperature.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Clothes\Shooes.cs" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

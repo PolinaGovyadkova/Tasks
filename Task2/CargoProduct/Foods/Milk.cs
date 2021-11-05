@@ -1,13 +1,20 @@
-﻿using System.Collections.Generic;
+﻿using CargoProduct.BaseCargo;
+using System.Collections.Generic;
 
 namespace CargoProduct.Foods
 {
-    public class Milk : Food, ITemperature
+    /// <summary>
+    /// Milk
+    /// </summary>
+    /// <seealso cref="CargoProduct.BaseCargo.Food" />
+    public class Milk : Food
     {
-        public Milk(double payloadCapacity, double volume) : base(payloadCapacity, volume)
-        {
-        }
-
-        public List<int> Temperature => new List<int> { 3, 4, 5 };
+        /// <summary>
+        /// Gets the temperature.
+        /// </summary>
+        /// <value>
+        /// The temperature.
+        /// </value>
+        public override List<int> Temperature => new List<int> { 3, 4, 5 };
     }
 }

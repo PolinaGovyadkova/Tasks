@@ -1,11 +1,12 @@
-﻿using CargoProduct;
+﻿using CargoProduct.BaseCargo;
 using CargoProduct.Foods;
 using CargoProduct.Fuels;
 using System;
-using Transport;
+using Transport.BaseElements;
 using Transport.Trailer;
 using Transport.TruckTractors;
 using TransportCompany;
+using WorkWithFile.WorkWithFile;
 
 namespace ConsoleApp
 {
@@ -13,136 +14,56 @@ namespace ConsoleApp
     {
         private static void Main(string[] args)
         {
-            Random rnd = new Random();
-            CarPark carPark = new CarPark();
-            Console.WriteLine("SAMITRAILERS Number");
-            while (Convert.ToInt32(Console.ReadLine()) != 4)
-            {
-                Console.WriteLine("1-t, 2-r, 3-a");
-                switch (rnd.Next(1, 4))
-                {
-                    case 1:
-                        {
-                            Semitrailer refrigerated = new Refrigerated(rnd.Next(1, 10), rnd.Next(1, 10));
-                            carPark.Semitrailers.Add(refrigerated);
-                        }
-                        break;
+            var carPark = new CarPark();
+            var ivecoSWay = new IvecoSWay();
+            ivecoSWay.PayloadCapacity = 200;
+            var mercedesBenzActros = new MercedesBenzActros();
+            mercedesBenzActros.PayloadCapacity = 200;
+            var refrigerated = new Refrigerated();
+            var tilt = new Tanker();
+            tilt.PayloadCapacity = 50;
+            tilt.Volume = 50;
 
-                    case 2:
-                        {
-                            Semitrailer refrigerated = new Tanker(rnd.Next(1, 10), rnd.Next(1, 10));
-                            carPark.Semitrailers.Add(refrigerated);
-                        }
-                        break;
+            refrigerated.PayloadCapacity = 100;
+            refrigerated.Volume = 100;
 
-                    case 3:
-                        {
-                            Semitrailer refrigerated = new Tilt(rnd.Next(1, 10), rnd.Next(1, 10));
-                            carPark.Semitrailers.Add(refrigerated);
-                        }
-                        break;
-                }
-            }
-            foreach (var item in carPark.Semitrailers)
-                Console.WriteLine(item);
+            carPark.Semitrailers.Add(refrigerated);
+            carPark.Semitrailers.Add(tilt);
 
-            Console.WriteLine("TRANSPORT Count");
-            while (Convert.ToInt32(Console.ReadLine()) != 4)
-            {
-                Console.WriteLine("1-IvecoSWay, 2-MercedesBenzActros, 3-VolvoFHISave");
-                switch (rnd.Next(1, 4))
-                {
-                    case 1:
-                        {
-                            TruckTractor refrigerated = new IvecoSWay(rnd.Next(1, 20));
-                            carPark.Couplings.Add(new Coupling(refrigerated, carPark.Semitrailers[new Random().Next(1, carPark.Semitrailers.Count)]));
-                            //carPark.CreateCouplings((carPark.Semitrailers[new Random().Next(1, carPark.Semitrailers.Count)]), refrigerated);
-                        }
-                        break;
+            carPark.TruckTractors.Add(ivecoSWay);
+            carPark.TruckTractors.Add(mercedesBenzActros);
+            carPark.TruckTractors[0].AddTrailer(refrigerated);
+            carPark.TruckTractors[1].AddTrailer(tilt);
+            Cargo fuel = new Milk();
+            fuel.PayloadCapacity = 10;
+            fuel.Volume = 10;
 
-                    case 2:
-                        {
-                            TruckTractor refrigerated = new MercedesBenzActros(rnd.Next(1, 20));
-                            carPark.Couplings.Add(new Coupling(refrigerated, carPark.Semitrailers[new Random().Next(1, carPark.Semitrailers.Count)]));
-                            //carPark.CreateCouplings((carPark.Semitrailers[new Random().Next(1, carPark.Semitrailers.Count)]), refrigerated);
-                        }
-                        break;
+            Cargo dt = new DT();
+            dt.PayloadCapacity = 10;
+            dt.Volume = 10;
 
-                    case 3:
-                        {
-                            TruckTractor refrigerated = new VolvoFHISave(rnd.Next(1, 20));
-                            carPark.Couplings.Add(new Coupling(refrigerated, carPark.Semitrailers[new Random().Next(1, carPark.Semitrailers.Count)]));
-                            //carPark.CreateCouplings((carPark.Semitrailers[new Random().Next(1, carPark.Semitrailers.Count)]), refrigerated);
-                        }
-                        break;
-                }
-            }
+            var logistician = new Logistician("", "", carPark);
+            //carPark.Semitrailers[0].ProductAdd(fuel);
+            var coupling = new Coupling(ivecoSWay, refrigerated);
+            var coupling1 = new Coupling(mercedesBenzActros, tilt);
+            carPark.Couplings.Add(coupling);
+            carPark.Couplings.Add(coupling1);
+            //carPark.TruckTractors[0].Semitrailer.Cargo = fuel;
+            logistician.AddCargo(coupling, fuel);
+            logistician.AddCargo(coupling1, dt);
+            carPark.AddTransport(ivecoSWay);
+            carPark.AddTransport(mercedesBenzActros);
+            carPark.AddTransport(refrigerated);
+            carPark.AddTransport(tilt);
+            var carParkXmlReader = new CarParkXmlReader();
+            carParkXmlReader.WriteToXmlFile(carPark, "CarParkXmlReader.xml");
+            var carParkStreamReader = new CarParkStreamReader();
+            carParkStreamReader.WriteToXmlFile(carPark, "CarParkStreamReader.xml");
 
-            foreach (var item in carPark.Couplings)
-                Console.WriteLine(item);
-
-            Console.WriteLine("CARGO Count");
-            while (Convert.ToInt32(Console.ReadLine()) != 4)
-            {
-                Console.WriteLine("1-Fuel, 2-Food, 3-Chemicals");
-                switch (rnd.Next(1, 4))
-                {
-                    case 1:
-                        {
-                            switch (rnd.Next(1, 4))
-                            {
-                                case 1:
-                                    Cargo cargo = new AI92(rnd.Next(1, 3), rnd.Next(1, 3));
-                                    carPark.AddCargo(carPark.Couplings[new Random().Next(1, carPark.Semitrailers.Count)], cargo);
-                                    break;
-
-                                case 2:
-                                    Cargo cargo1 = new AI95(rnd.Next(1, 3), rnd.Next(1, 3));
-                                    carPark.AddCargo(carPark.Couplings[new Random().Next(1, carPark.Semitrailers.Count)], cargo1);
-                                    break;
-
-                                case 3:
-                                    Cargo cargo2 = new DT(rnd.Next(1, 3), rnd.Next(1, 3));
-                                    carPark.AddCargo(carPark.Couplings[new Random().Next(1, carPark.Semitrailers.Count)], cargo2);
-                                    break;
-                            }
-                        }
-                        break;
-
-                    case 2:
-                        {
-                            switch (rnd.Next(1, 2))
-                            {
-                                case 1:
-                                    Cargo cargo = new Fish(rnd.Next(1, 3), rnd.Next(1, 3));
-                                    carPark.AddCargo(carPark.Couplings[new Random().Next(1, carPark.Semitrailers.Count)], cargo);
-                                    break;
-
-                                case 2:
-                                    Cargo cargo1 = new Milk(rnd.Next(1, 3), rnd.Next(1, 3));
-                                    carPark.AddCargo(carPark.Couplings[new Random().Next(1, carPark.Semitrailers.Count)], cargo1);
-                                    break;
-                            }
-                        }
-                        break;
-
-                    case 3:
-                        {
-                            Cargo cargo = new Shooes(rnd.Next(1, 3), rnd.Next(1, 3));
-                            carPark.AddCargo(carPark.Couplings[new Random().Next(1, carPark.Semitrailers.Count)], cargo);
-                        }
-                        break;
-                }
-            }
-            carPark.CreateCouplings((carPark.Semitrailers[new Random().Next(1, carPark.Semitrailers.Count)]), new VolvoFHISave(rnd.Next(15, 20)));
-            carPark.RemoveAllCargo(carPark.Couplings[new Random().Next(1, carPark.Semitrailers.Count)]);
-            carPark.RemovePartCargo(carPark.Couplings[new Random().Next(1, carPark.Semitrailers.Count)], 10, 10);
-            foreach (var item in carPark.CouplingsWithFreeSpace())
-                Console.WriteLine(item);
-            foreach (var item in carPark.FindSemitrailerByCharacteristics<Semitrailer>(10, 10))
-                Console.WriteLine(item);
-            foreach (var item in carPark.FindSemitrailerByType<Refrigerated>())
-                Console.WriteLine(item);
+            Console.WriteLine(carPark.TruckTractors[0] + " " + carPark.TruckTractors[0].Semitrailer + " " +
+                              carPark.TruckTractors[0].Semitrailer.Cargo);
+            Console.WriteLine(carPark.TruckTractors[1] + " " + carPark.TruckTractors[1].Semitrailer + " " +
+                              carPark.TruckTractors[1].Semitrailer.Cargo);
             Console.ReadKey();
         }
     }

@@ -1,9 +1,12 @@
-﻿namespace CargoProduct.Fuels
+﻿using CargoProduct.BaseCargo;
+
+namespace CargoProduct.Fuels
 {
+    /// <summary>
+    /// DT
+    /// </summary>
+    /// <seealso cref="CargoProduct.BaseCargo.Fuel" />
     public class DT : Fuel
     {
-        public DT(double payloadCapacity, double volume) : base(payloadCapacity, volume)
-        {
-        }
     }
 }

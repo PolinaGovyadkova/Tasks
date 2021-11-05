@@ -1,31 +1,75 @@
-﻿using System;
+﻿using CargoProduct.Interfaces;
+using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using CargoProduct;
-using CargoProduct.Foods;
-using CargoProduct.Fuels;
-using Transport;
-using Transport.Trailer;
-using Transport.TruckTractors;
+using Transport.BaseElements;
+using Transport.Intefaces;
 
 namespace TransportCompany
 {
-    public class CarPark
+    /// <summary>
+    /// CarPark
+    /// </summary>
+    /// <seealso cref="TransportCompany.ICarPark" />
+    public class CarPark : ICarPark
     {
+        /// <summary>
+        /// Gets or sets the transports.
+        /// </summary>
+        /// <value>
+        /// The transports.
+        /// </value>
+        public List<ITransport> Transports { get; set; } = new List<ITransport>();
+        /// <summary>
+        /// Gets or sets the semitrailers.
+        /// </summary>
+        /// <value>
+        /// The semitrailers.
+        /// </value>
         public List<Semitrailer> Semitrailers { get; set; } = new List<Semitrailer>();
+        /// <summary>
+        /// Gets or sets the truck tractors.
+        /// </summary>
+        /// <value>
+        /// The truck tractors.
+        /// </value>
+        public List<TruckTractor> TruckTractors { get; set; } = new List<TruckTractor>();
+        /// <summary>
+        /// Gets the couplings.
+        /// </summary>
+        /// <value>
+        /// The couplings.
+        /// </value>
         public List<Coupling> Couplings { get; } = new List<Coupling>();
 
-        public List<Coupling> CouplingWithSpecificCargo(Cargo cargo)
-        {
-            return Couplings.Where(rt => Equals(rt.Semitrailer.Cargo, cargo)).ToList();
-        }
+        /// <summary>
+        /// Adds the transport.
+        /// </summary>
+        /// <param name="transport">The transport.</param>
+        public void AddTransport(ITransport transport) => Transports.Add(transport);
 
-        public List<Coupling> CouplingsWithFreeSpace()
-        {
-            return Couplings.Where(element =>
+        /// <summary>
+        /// Couplings the with specific cargo.
+        /// </summary>
+        /// <param name="cargo">The cargo.</param>
+        /// <returns></returns>
+        public List<Coupling> CouplingWithSpecificCargo(ICargo cargo) => Couplings.Where(rt => Equals(rt.Semitrailer.Cargo, cargo)).ToList();
+
+        /// <summary>
+        /// Coupling with free space.
+        /// </summary>
+        /// <returns></returns>
+        public List<Coupling> CouplingsWithFreeSpace() =>
+            Couplings.Where(element =>
                 element.Semitrailer.FreeWeight > 0 && element.Semitrailer.FreeWeight > 0).ToList();
-        }
 
+        /// <summary>
+        /// Creates the couplings.
+        /// </summary>
+        /// <param name="semitrailer">The semitrailer.</param>
+        /// <param name="truckTractor">The truck tractor.</param>
+        /// <exception cref="System.Exception">Тягач/прицеп уже заняты</exception>
         public void CreateCouplings(Semitrailer semitrailer, TruckTractor truckTractor)
         {
             var flag = false;
@@ -37,54 +81,12 @@ namespace TransportCompany
             else throw new Exception("Тягач/прицеп уже заняты");
         }
 
-        public void AddCargo(Coupling coupling, Cargo cargo)
-        {
-            foreach (var element in Couplings.Where(element => ReferenceEquals(element, coupling)))
-                if (coupling.Semitrailer.Cargo is null)
-                {
-                    switch (coupling.Semitrailer)
-                    {
-                        case Tanker _ when cargo is Fuel:
-                        case Refrigerated _ when cargo is ITemperature:
-                            coupling.Semitrailer.Cargo = cargo;
-                            break;
-
-                        default:
-                            coupling.Semitrailer.Cargo = cargo;
-                            break;
-                    }
-                }
-                else
-                {
-                    if (!Equals(coupling.Semitrailer.Cargo, cargo)) throw new Exception("Не совпадают типы грузов");
-                    if (coupling.Semitrailer.FreeVolume >= cargo.Volume &&
-                        coupling.Semitrailer.FreeWeight >= cargo.PayloadCapacity)
-                    {
-                        if (coupling.Semitrailer.Cargo is ITemperature currentCargo && cargo is ITemperature newCargo)
-                        {
-                            var flag = true;
-                            foreach (var elementCargo in currentCargo.Temperature)
-                                for (var index = 0; index < newCargo.Temperature.Count && flag; index++)
-                                {
-                                    if (elementCargo != newCargo.Temperature[index]) continue;
-                                    coupling.Semitrailer.Cargo.PayloadCapacity += cargo.PayloadCapacity;
-                                    coupling.Semitrailer.Cargo.Volume += cargo.Volume;
-                                    flag = false;
-                                }
-                        }
-                        else
-                        {
-                            coupling.Semitrailer.Cargo.PayloadCapacity += cargo.PayloadCapacity;
-                            coupling.Semitrailer.Cargo.Volume += cargo.Volume;
-                        }
-                    }
-                    else
-                    {
-                        throw new Exception("Груз не может быть догружен из-за массы/объёма");
-                    }
-                }
-        }
-
+        /// <summary>
+        /// Change the truck tractor.
+        /// </summary>
+        /// <param name="coupling">The coupling.</param>
+        /// <param name="truckTractor">The truck tractor.</param>
+        /// <exception cref="System.Exception">Тягач нельзя добавить</exception>
         public void ChangeTruckTractor(Coupling coupling, TruckTractor truckTractor)
         {
             if (Couplings.Any(element => ReferenceEquals(element.TruckTractor, truckTractor)))
@@ -94,32 +96,12 @@ namespace TransportCompany
                     Couplings[i] = new Coupling(truckTractor, Couplings[i].Semitrailer);
         }
 
-        public void RemoveAllCargo(Coupling coupling)
-        {
-            coupling.Semitrailer.Cargo = null;
-        }
-
-        public void RemovePartCargo(Coupling coupling, double weight, double volume)
-        {
-            coupling.Semitrailer.Cargo.PayloadCapacity -= weight;
-            coupling.Semitrailer.Cargo.Volume -= volume;
-        }
-
-        public List<T> FindSemitrailerByCharacteristics<T>(double payload, double volume)
-            where T : Semitrailer
-        {
-            var transports = FindSemitrailerByType<T>();
-            return transports.FindAll(element => element.PayloadCapacity == payload && element.Volume == volume);
-        }
-
-        public List<T> FindSemitrailerByType<T>()
-            where T : Semitrailer
-        {
-            var transports = new List<T>();
-            foreach (var element in transports)
-                if (element is T trailer)
-                    transports.Add(trailer);
-            return transports;
-        }
+        /// <summary>
+        /// Returns an enumerator that iterates through the collection.
+        /// </summary>
+        /// <returns>
+        /// Object <see cref="T:System.Collections.IEnumerator" />, which is used to pass through the collection.
+        /// </returns>
+        public IEnumerator GetEnumerator() => Transports.GetEnumerator();
     }
 }

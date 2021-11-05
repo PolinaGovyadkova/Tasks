@@ -1,9 +1,12 @@
-﻿namespace Transport.Trailer
+﻿using Transport.BaseElements;
+
+namespace Transport.Trailer
 {
+    /// <summary>
+    /// Tilt
+    /// </summary>
+    /// <seealso cref="Transport.BaseElements.Semitrailer" />
     public class Tilt : Semitrailer
     {
-        public Tilt(double payloadCapacity, double volume) : base(payloadCapacity, volume)
-        {
-        }
     }
 }

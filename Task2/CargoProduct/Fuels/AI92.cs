@@ -1,9 +1,12 @@
-﻿namespace CargoProduct.Fuels
+﻿using CargoProduct.BaseCargo;
+
+namespace CargoProduct.Fuels
 {
+    /// <summary>
+    /// AI92
+    /// </summary>
+    /// <seealso cref="CargoProduct.BaseCargo.Fuel" />
     public class AI92 : Fuel
     {
-        public AI92(double payloadCapacity, double volume) : base(payloadCapacity, volume)
-        {
-        }
     }
 }

@@ -41,17 +41,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Cargo.cs" />
-    <Compile Include="Chemicals\Chemicals.cs" />
-    <Compile Include="Clothes\Clothes.cs" />
+    <Compile Include="BaseCargo\Cargo.cs" />
+    <Compile Include="Chemicals\OAlkyl.cs" />
+    <Compile Include="Chemicals\Precursors.cs" />
+    <Compile Include="Clothes\Shirt.cs" />
+    <Compile Include="Interfaces\ICargo.cs" />
+    <Compile Include="BaseCargo\Chemicals.cs" />
+    <Compile Include="BaseCargo\Clothes.cs" />
     <Compile Include="Foods\Fish.cs" />
-    <Compile Include="Foods\Food.cs" />
+    <Compile Include="BaseCargo\Food.cs" />
     <Compile Include="Foods\Milk.cs" />
     <Compile Include="Fuels\AI92.cs" />
     <Compile Include="Fuels\AI95.cs" />
     <Compile Include="Fuels\DT.cs" />
-    <Compile Include="Fuels\Fuel.cs" />
-    <Compile Include="Foods\ITemperature.cs" />
+    <Compile Include="BaseCargo\Fuel.cs" />
+    <Compile Include="Interfaces\ITemperature.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Clothes\Shooes.cs" />
   </ItemGroup>

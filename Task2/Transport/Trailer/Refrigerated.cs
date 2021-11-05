@@ -1,9 +1,12 @@
-﻿namespace Transport.Trailer
+﻿using Transport.BaseElements;
+
+namespace Transport.Trailer
 {
+    /// <summary>
+    /// Refrigerated
+    /// </summary>
+    /// <seealso cref="Transport.BaseElements.Semitrailer" />
     public class Refrigerated : Semitrailer
     {
-        public Refrigerated(double payloadCapacity, double volume) : base(payloadCapacity, volume)
-        {
-        }
     }
 }

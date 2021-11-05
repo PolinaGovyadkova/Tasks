@@ -1,0 +1,37 @@
+﻿<TransportCompany>
+     <AutoPark>
+       <Truck>
+         <Name>Maz</Name>
+         <SemiTrailer>
+           <Name>Refrigerator</Name>
+           <Product>
+             <Name>Milk</Name>
+             <Weight>500</Weight>
+             <Volume>50</Volume>
+           </Product>
+         </SemiTrailer>
+       </Truck>
+       <Truck>
+         <Name>Volvo</Name>
+         <SemiTrailer>
+           <Name>Tilt</Name>
+           <Product>
+             <Name>Lecithin</Name>
+             <Weight>100</Weight>
+             <Volume>60</Volume>
+           </Product>
+         </SemiTrailer>
+       </Truck>
+       <SemiTrailer>
+         <Name>Tilt</Name>
+         <Product>
+           <Name>Lecithin</Name>
+           <Weight>90</Weight>
+           <Volume>60</Volume>
+         </Product>
+       </SemiTrailer>
+       <Truck>
+         <Name>Maz</Name>
+       </Truck>
+     </AutoPark>
+</TransportCompany>

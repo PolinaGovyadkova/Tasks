@@ -13,6 +13,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XMLFile", "Task2\WorkWithFi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApp", "Task2\ConsoleApp\ConsoleApp.csproj", "{3A2B2261-BE75-4008-A119-128C9034A7DE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TransportCompanyTests", "Task2\TransportCompanyTests\TransportCompanyTests.csproj", "{31C23C39-4813-4DC9-8C21-866BDD306ED0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XMLFileTests", "Task2\XMLFileTests\XMLFileTests.csproj", "{9CD2EF87-0B1A-42C0-A5C7-504844DCED81}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +43,14 @@ Global
 		{3A2B2261-BE75-4008-A119-128C9034A7DE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3A2B2261-BE75-4008-A119-128C9034A7DE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3A2B2261-BE75-4008-A119-128C9034A7DE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{31C23C39-4813-4DC9-8C21-866BDD306ED0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{31C23C39-4813-4DC9-8C21-866BDD306ED0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{31C23C39-4813-4DC9-8C21-866BDD306ED0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{31C23C39-4813-4DC9-8C21-866BDD306ED0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9CD2EF87-0B1A-42C0-A5C7-504844DCED81}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9CD2EF87-0B1A-42C0-A5C7-504844DCED81}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9CD2EF87-0B1A-42C0-A5C7-504844DCED81}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9CD2EF87-0B1A-42C0-A5C7-504844DCED81}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

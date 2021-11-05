@@ -1,9 +1,10 @@
-﻿namespace CargoProduct
+﻿namespace CargoProduct.Clothes
 {
-    public class Shooes : Clothes
+    /// <summary>
+    /// Shooes
+    /// </summary>
+    /// <seealso cref="CargoProduct.BaseCargo.Clothes" />
+    public class Shooes : BaseCargo.Clothes
     {
-        public Shooes(double payloadCapacity, double volume) : base(payloadCapacity, volume)
-        {
-        }
     }
 }

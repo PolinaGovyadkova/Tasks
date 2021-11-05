@@ -62,6 +62,10 @@
       <Project>{7ef90152-6dd1-4a1e-b71c-72ffddb541a5}</Project>
       <Name>Transport</Name>
     </ProjectReference>
+    <ProjectReference Include="..\WorkWithFile\XMLFile.csproj">
+      <Project>{431E7AC2-A423-4291-A98D-68333080057D}</Project>
+      <Name>XMLFile</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

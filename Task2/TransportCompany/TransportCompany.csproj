@@ -42,7 +42,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CarPark.cs" />
+    <Compile Include="ICarPark.cs" />
+    <Compile Include="Logistician.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="IWorker.cs" />
+    <Compile Include="TransportSearchEngine.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CargoProduct\CargoProduct.csproj">

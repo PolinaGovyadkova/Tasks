@@ -29,6 +29,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Debug\DinerTests.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -57,6 +58,7 @@
   </Choose>
   <ItemGroup>
     <Compile Include="DinerTests.cs" />
+    <Compile Include="Processes\BaseProcesses\AllUpdatesTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RecipeTests.cs" />
     <Compile Include="SerializerTests.cs" />
@@ -67,17 +69,17 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Dishes\Dishes.csproj">
+    <ProjectReference Include="..\Diner\Diner.csproj">
+      <Project>{1329e2f9-1d39-4ed2-8b88-42161ed0ca0b}</Project>
+      <Name>Diner</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Dishes\DishesCreator.csproj">
       <Project>{2F8CD68D-A792-4B56-A51A-E1BCF4E353E4}</Project>
-      <Name>Dishes</Name>
+      <Name>DishesCreator</Name>
     </ProjectReference>
     <ProjectReference Include="..\JSONSerialization\JSONSerialization.csproj">
       <Project>{AE93A940-D5EF-4B24-94B5-54BC6C7A4679}</Project>
       <Name>JSONSerialization</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Library\Diner.csproj">
-      <Project>{1329E2F9-1D39-4ED2-8B88-42161ED0CA0B}</Project>
-      <Name>Diner</Name>
     </ProjectReference>
   </ItemGroup>
   <Choose>

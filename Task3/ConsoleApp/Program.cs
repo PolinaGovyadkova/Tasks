@@ -2,10 +2,10 @@
 using Dishes.Abstract;
 using Dishes.Processes;
 using Dishes.Products.Ingredients;
-using Library;
-using Library.People;
 using System;
 using System.Collections.Generic;
+using Diner;
+using Diner.People;
 using Dishes.Processes.TypeProcesses;
 
 namespace ConsoleApp
@@ -33,7 +33,7 @@ namespace ConsoleApp
                 {new List<Product>() {new PekingCabbage(), new Meet(), new Meet(), new Meet(), new Meet()}, new CutProcessDefault()}
             };
 
-            var diner = new Diner();
+            var diner = new Eatery();
             var dishRecipe = diner.Chief.MakeNewRecipe(recipe);
             var dishRecipe1 = diner.Chief.MakeNewRecipe(recipe1);
             

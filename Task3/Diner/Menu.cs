@@ -1,27 +1,27 @@
-﻿using Dishes.Interfaces;
+﻿using Dishes;
+using System.Collections.Generic;
+using System.Linq;
 
-namespace Dishes.Abstract
+namespace Diner
 {
     /// <summary>
-    /// Temperature
+    /// Menu
     /// </summary>
-    /// <seealso cref="Dishes.Interfaces.ITemperature" />
-    public abstract class Temperature : ITemperature
+    public class Menu
     {
         /// <summary>
-        /// Gets or sets the maximum temperature.
+        /// Gets or sets the dishes.
         /// </summary>
         /// <value>
-        /// The maximum temperature.
+        /// The dishes.
         /// </value>
-        public int MaxTemperature { get; set; }
+        public List<Dish> Dishes { get; set; }
+
         /// <summary>
-        /// Gets or sets the minimum temperature.
+        /// Initializes a new instance of the <see cref="Menu"/> class.
         /// </summary>
-        /// <value>
-        /// The minimum temperature.
-        /// </value>
-        public int MinTemperature { get; set; }
+        public Menu() => Dishes = new List<Dish>();
+
         /// <summary>
         /// Determines whether the specified <see cref="System.Object" />, is equal to this instance.
         /// </summary>
@@ -29,20 +29,26 @@ namespace Dishes.Abstract
         /// <returns>
         ///   <c>true</c> if the specified <see cref="System.Object" /> is equal to this instance; otherwise, <c>false</c>.
         /// </returns>
-        public override bool Equals(object obj) => obj is Temperature temperature && temperature.MinTemperature == MinTemperature && temperature.MinTemperature == MinTemperature;
+        public override bool Equals(object obj) => obj is Menu menu && menu.Dishes == Dishes;
+
         /// <summary>
         /// Returns a hash code for this instance.
         /// </summary>
         /// <returns>
         /// A hash code for this instance, suitable for use in hashing algorithms and data structures like a hash table. 
         /// </returns>
-        public override int GetHashCode() => base.GetHashCode();
+        public override int GetHashCode()
+        {
+            var hash = Dishes.Sum(dshes => dshes.GetHashCode());
+            return unchecked(hash);
+        }
+
         /// <summary>
         /// Converts to string.
         /// </summary>
         /// <returns>
         /// A <see cref="System.String" /> that represents this instance.
         /// </returns>
-        public override string ToString() => $"Min Temperature {MinTemperature} and Max Temperature {MaxTemperature}";
+        public override string ToString() => $"Menu with dish id {Dishes}";
     }
 }

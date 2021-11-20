@@ -1,19 +1,25 @@
 ﻿using System;
 using System.Collections.Generic;
+using Diner;
+using Diner.People;
 using Dishes;
 using Dishes.Abstract;
 using Dishes.Processes.TypeProcesses;
 using Dishes.Products.Ingredients;
 using JSONSerialization;
-using Library;
-using Library.People;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace DinerTests
 {
+    /// <summary>
+    /// Serializer Test
+    /// </summary>
     [TestClass()]
     public class SerializerTests
     {
+        /// <summary>
+        /// Writes the and read test.
+        /// </summary>
         [TestMethod()]
         public void WriteAndReadTest()
         {
@@ -22,7 +28,7 @@ namespace DinerTests
             var secondClient = new Client(1);
             var thirdClient = new Client(2);
             var manager = new Manager();
-            var diner = new Diner();
+            var diner = new Eatery();
             var products = new List<Product>() { new Tomato(), new Tomato(), new PekingCabbage() };
             var recipe = new Dictionary<List<Product>, Process>
             {
@@ -40,9 +46,9 @@ namespace DinerTests
             manager.TakeOrder(new DateTime(2020, 11, 12), secondClient, menu);
             manager.TakeOrder(new DateTime(2026, 10, 12), thirdClient, menu);
             diner.Manager = manager;
-            ISerializer<Diner> dinerSerialize = new Serializer();
-           
-            Diner diner1 = dinerSerialize.Read();
+            ISerializer<Eatery> dinerSerialize = new Serializer();
+            dinerSerialize.Write(diner);
+            Eatery diner1 = dinerSerialize.Read();
             dinerSerialize.Write(diner1);
             Assert.AreEqual(diner1.ToString(), diner.ToString());
         }

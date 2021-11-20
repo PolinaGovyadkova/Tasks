@@ -2,18 +2,24 @@
 using Dishes.Abstract;
 using Dishes.Processes;
 using Dishes.Products.Ingredients;
-using Library;
-using Library.People;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
+using Diner;
+using Diner.People;
 using Dishes.Processes.TypeProcesses;
 
 namespace DinerTests
 {
+    /// <summary>
+    /// Diner Tests
+    /// </summary>
     [TestClass()]
     public class DinerTests
     {
+        /// <summary>
+        /// Loads the exception test.
+        /// </summary>
         [TestMethod()]
         [ExpectedException(typeof(Exception))]
         public void LoadExceptionTest()
@@ -45,8 +51,11 @@ namespace DinerTests
             };
 
             Assert.AreEqual(products.Count, TestHelper.CreateDiner(recipe).GetIngredientsByTemperature(6).Count);
-        } 
+        }
 
+        /// <summary>
+        /// Gets the ingredients by temperature test.
+        /// </summary>
         [TestMethod()]
         public void GetIngredientsByTemperatureTest()
         {
@@ -56,8 +65,11 @@ namespace DinerTests
                 {products, TestHelper.RandomProcess(products)}
             };
 
-            Assert.AreEqual(products.Count, TestHelper.CreateDiner(recipe).GetIngredientsByTemperature(6).Count);
+            Assert.AreEqual(products.Count, TestHelper.CreateDiner(recipe).GetIngredientsByTemperature(4).Count);
         }
+        /// <summary>
+        /// Gets the orders by date test.
+        /// </summary>
         [TestMethod()]
         public void GetOrdersByDateTest()
         {
@@ -70,6 +82,9 @@ namespace DinerTests
             Assert.AreEqual(1, TestHelper.CreateDiner(recipe).GetOrdersByDate(new DateTime(2019, 8, 10), new DateTime(2022, 8, 18)).Count);
         }
 
+        /// <summary>
+        /// Counts the ingredients in dishes test.
+        /// </summary>
         [TestMethod()]
         public void CountIngredientsInDishesTest()
         {
@@ -83,6 +98,9 @@ namespace DinerTests
             Assert.AreEqual(product.GetType().ToString(), TestHelper.CreateDiner(recipe).CountIngredientsInDishes());
         }
 
+        /// <summary>
+        /// Counts the method test.
+        /// </summary>
         [TestMethod()]
         public void CountMethodTest()
         {
@@ -99,6 +117,9 @@ namespace DinerTests
             Assert.AreEqual(processesCount.Count, TestHelper.CreateDiner(recipe).CountMethod(process));
         }
 
+        /// <summary>
+        /// Processeses the test.
+        /// </summary>
         [TestMethod()]
         public void ProcessesTest()
         {
@@ -122,6 +143,9 @@ namespace DinerTests
             Assert.AreEqual(processes.Count, TestHelper.CreateDiner(recipe).Processes().Count);
         }
 
+        /// <summary>
+        /// Productses the test.
+        /// </summary>
         [TestMethod()]
         public void ProductsTest()
         {
@@ -142,7 +166,10 @@ namespace DinerTests
             Assert.AreEqual(newProducts.Count, TestHelper.CreateDiner(recipe).Products().Count);
         }
 
-       
+
+        /// <summary>
+        /// Methodses the by price test.
+        /// </summary>
         [TestMethod()]
         public void MethodsByPriceTest()
         {
@@ -171,6 +198,9 @@ namespace DinerTests
             CollectionAssert.AreEqual(TestHelper.CreateDiner(recipe).MethodsByPrice(), processingMethods);
         }
 
+        /// <summary>
+        /// Expenseses the by type and time test.
+        /// </summary>
         [TestMethod()]
         public void ExpensesByTypeAndTimeTest()
         {
@@ -179,7 +209,7 @@ namespace DinerTests
             var secondClient = new Client(1);
             var thirdClient = new Client(2);
             var manager = new Manager();
-            var diner = new Diner();
+            var diner = new Eatery();
             var products = new List<Product>() { new Tomato(), new Tomato(), new PekingCabbage() };
             var recipe = new Dictionary<List<Product>, Process>
             {
@@ -198,7 +228,7 @@ namespace DinerTests
             manager.TakeOrder(new DateTime(2026, 10, 12), thirdClient, menu);
             diner.Manager = manager;
 
-            Assert.AreEqual(60, diner.ExpensesByTypeAndTime(new DateTime(2000, 03, 03), new DateTime(2025, 03, 03), secondDish));
+            Assert.AreEqual(102, diner.ExpensesByTypeAndTime(new DateTime(2000, 03, 03), new DateTime(2025, 03, 03), secondDish));
         }
     }
 }

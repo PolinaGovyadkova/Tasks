@@ -21,6 +21,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Debug\JSONSerialization.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -70,13 +71,13 @@
     <Compile Include="Serializer.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Dishes\Dishes.csproj">
-      <Project>{2F8CD68D-A792-4B56-A51A-E1BCF4E353E4}</Project>
-      <Name>Dishes</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Library\Diner.csproj">
-      <Project>{1329E2F9-1D39-4ED2-8B88-42161ED0CA0B}</Project>
+    <ProjectReference Include="..\Diner\Diner.csproj">
+      <Project>{1329e2f9-1d39-4ed2-8b88-42161ed0ca0b}</Project>
       <Name>Diner</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Dishes\DishesCreator.csproj">
+      <Project>{2F8CD68D-A792-4B56-A51A-E1BCF4E353E4}</Project>
+      <Name>DishesCreator</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

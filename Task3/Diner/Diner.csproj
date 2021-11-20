@@ -7,8 +7,8 @@
     <ProjectGuid>{1329E2F9-1D39-4ED2-8B88-42161ED0CA0B}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Library</RootNamespace>
-    <AssemblyName>Library</AssemblyName>
+    <RootNamespace>Diner</RootNamespace>
+    <AssemblyName>Diner</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -21,6 +21,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Debug\Diner.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -43,16 +44,16 @@
   <ItemGroup>
     <Compile Include="People\Chef.cs" />
     <Compile Include="People\Cliet.cs" />
-    <Compile Include="Diner.cs" />
+    <Compile Include="Eatery.cs" />
     <Compile Include="People\Manager.cs" />
     <Compile Include="Menu.cs" />
     <Compile Include="Order.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Dishes\Dishes.csproj">
+    <ProjectReference Include="..\Dishes\DishesCreator.csproj">
       <Project>{2f8cd68d-a792-4b56-a51a-e1bcf4e353e4}</Project>
-      <Name>Dishes</Name>
+      <Name>DishesCreator</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />

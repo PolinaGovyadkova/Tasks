@@ -1,27 +1,31 @@
-﻿using Dishes.Interfaces;
+﻿using System.Collections.Generic;
 
-namespace Dishes.Abstract
+namespace Diner.People
 {
     /// <summary>
-    /// Temperature
+    /// Eatery Client
     /// </summary>
-    /// <seealso cref="Dishes.Interfaces.ITemperature" />
-    public abstract class Temperature : ITemperature
+    public class Client
     {
         /// <summary>
-        /// Gets or sets the maximum temperature.
+        /// The customer's choice  dish name
         /// </summary>
-        /// <value>
-        /// The maximum temperature.
-        /// </value>
-        public int MaxTemperature { get; set; }
+        public List<int> DishName;
+
         /// <summary>
-        /// Gets or sets the minimum temperature.
+        /// Initializes a new instance of the <see cref="Client"/> class.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        public Client(int id) => DishName = new List<int> { id };
+
+        /// <summary>
+        /// Gets or sets the identifier.
         /// </summary>
         /// <value>
-        /// The minimum temperature.
+        /// The identifier.
         /// </value>
-        public int MinTemperature { get; set; }
+        public int Id { get; set; }
+
         /// <summary>
         /// Determines whether the specified <see cref="System.Object" />, is equal to this instance.
         /// </summary>
@@ -29,20 +33,22 @@ namespace Dishes.Abstract
         /// <returns>
         ///   <c>true</c> if the specified <see cref="System.Object" /> is equal to this instance; otherwise, <c>false</c>.
         /// </returns>
-        public override bool Equals(object obj) => obj is Temperature temperature && temperature.MinTemperature == MinTemperature && temperature.MinTemperature == MinTemperature;
+        public override bool Equals(object obj) => obj is Client client && client.DishName == DishName;
+
         /// <summary>
         /// Returns a hash code for this instance.
         /// </summary>
         /// <returns>
         /// A hash code for this instance, suitable for use in hashing algorithms and data structures like a hash table. 
         /// </returns>
-        public override int GetHashCode() => base.GetHashCode();
+        public override int GetHashCode() => unchecked(DishName.GetHashCode());
+
         /// <summary>
         /// Converts to string.
         /// </summary>
         /// <returns>
         /// A <see cref="System.String" /> that represents this instance.
         /// </returns>
-        public override string ToString() => $"Min Temperature {MinTemperature} and Max Temperature {MaxTemperature}";
+        public override string ToString() => $"Client with menu item {DishName} ";
     }
 }

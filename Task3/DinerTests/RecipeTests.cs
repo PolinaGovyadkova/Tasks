@@ -5,9 +5,15 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace DinerTests
 {
+    /// <summary>
+    /// Recipe Test
+    /// </summary>
     [TestClass()]
     public class RecipeTests
     {
+        /// <summary>
+        /// Calculates the time and price test.
+        /// </summary>
         [TestMethod()]
         public void CalculateTimeAndPriceTest()
         {
@@ -25,6 +31,9 @@ namespace DinerTests
             Assert.AreEqual(process.Time, recipe.Time);
         }
 
+        /// <summary>
+        /// Adds the product test.
+        /// </summary>
         [TestMethod()]
         public void AddProductTest()
         {

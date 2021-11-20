@@ -21,6 +21,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Debug\Dishes.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -46,15 +47,17 @@
     <Compile Include="Interfaces\IAddProcess.cs" />
     <Compile Include="Interfaces\IDish.cs" />
     <Compile Include="Interfaces\ITemperature.cs" />
+    <Compile Include="Processes\BaseProcesses\AddProcess.cs" />
     <Compile Include="Processes\ProcessesInterfaces\IBakeProcess.cs" />
     <Compile Include="Processes\ProcessesInterfaces\ICutProcess.cs" />
     <Compile Include="Processes\ProcessesInterfaces\IMixProcess.cs" />
     <Compile Include="Processes\ProcessesInterfaces\IRoastingProcess.cs" />
-    <Compile Include="Processes\BaseProcesses\AddProcess.cs" />
     <Compile Include="Processes\TypeProcesses\BakeProcessDefault.cs" />
     <Compile Include="Processes\TypeProcesses\CutProcessDefault.cs" />
     <Compile Include="Processes\TypeProcesses\MixProcessDefault.cs" />
     <Compile Include="Processes\TypeProcesses\RoastingProcessRare.cs" />
+    <Compile Include="Products\Drinks\Drink.cs" />
+    <Compile Include="Products\Ingredients\DefaultProduct.cs" />
     <Compile Include="Recipe.cs" />
     <Compile Include="Products\Ingredients\Meet.cs" />
     <Compile Include="Products\Drinks\OrangeJucie.cs" />

@@ -57,12 +57,12 @@
     <Otherwise />
   </Choose>
   <ItemGroup>
-    <Compile Include="DinerTests.cs" />
+    <Compile Include="DinerElementTests\DinerTests.cs" />
     <Compile Include="Processes\BaseProcesses\AllUpdatesTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RecipeTests.cs" />
+    <Compile Include="DinerElementTests\RecipeTests.cs" />
     <Compile Include="SerializerTests.cs" />
-    <Compile Include="TestHelper.cs" />
+    <Compile Include="DinerElementTests\TestHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
@@ -82,6 +82,7 @@
       <Name>JSONSerialization</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
       <ItemGroup>

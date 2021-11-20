@@ -56,8 +56,8 @@
     <Compile Include="Processes\TypeProcesses\CutProcessDefault.cs" />
     <Compile Include="Processes\TypeProcesses\MixProcessDefault.cs" />
     <Compile Include="Processes\TypeProcesses\RoastingProcessRare.cs" />
-    <Compile Include="Products\Drinks\Drink.cs" />
-    <Compile Include="Products\Ingredients\DefaultProduct.cs" />
+    <Compile Include="Products\Drinks\BaseDrink\Drink.cs" />
+    <Compile Include="Products\Ingredients\BaseIngredient\DefaultProduct.cs" />
     <Compile Include="Recipe.cs" />
     <Compile Include="Products\Ingredients\Meet.cs" />
     <Compile Include="Products\Drinks\OrangeJucie.cs" />

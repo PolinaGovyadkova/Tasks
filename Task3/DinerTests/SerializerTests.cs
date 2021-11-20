@@ -37,7 +37,7 @@ namespace DinerTests
             menu.Dishes.Add(thirdDish);
             diner.Menu = menu;
             manager.TakeOrder(new DateTime(2020, 10, 12), firstClient, menu);
-            manager.TakeOrder(new DateTime(2020, 10, 12), secondClient, menu);
+            manager.TakeOrder(new DateTime(2020, 11, 12), secondClient, menu);
             manager.TakeOrder(new DateTime(2026, 10, 12), thirdClient, menu);
             diner.Manager = manager;
             ISerializer<Diner> dinerSerialize = new Serializer();

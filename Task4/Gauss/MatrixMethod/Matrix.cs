@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Gauss.MatrixMethod
@@ -93,5 +94,24 @@ namespace Gauss.MatrixMethod
 
             return result;
         }
+
+        public override string ToString() => $"Variables: {RowCount} and {ColumnCount}";
+        public bool Equals(Matrix other)
+        {
+            if (ReferenceEquals(null, other)) return false;
+            if (ReferenceEquals(this, other)) return true;
+            for (var i = 0; i < RowCount; i++)
+            {
+                for (var j = 0; j < ColumnCount; j++)
+                {
+                    if (Math.Abs(_matrix[i, j] - other._matrix[i, j]) > 100 * double.Epsilon)
+                    {
+                        return false;
+                    }
+                }
+            }
+            return true;
+        }
+        public override int GetHashCode() => _matrix.GetHashCode();
     }
 }

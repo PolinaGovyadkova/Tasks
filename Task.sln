@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Parser", "Task4\Parser\Pars
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ParserTests", "Task4\ParserTests1\ParserTests.csproj", "{6656E2F5-9464-4DA1-B55A-FBE1019D5B61}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GaussTests", "Task4\GaussTests\GaussTests.csproj", "{39B75A9E-EE35-42EB-AA6E-86B6F61CEF96}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{6656E2F5-9464-4DA1-B55A-FBE1019D5B61}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6656E2F5-9464-4DA1-B55A-FBE1019D5B61}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6656E2F5-9464-4DA1-B55A-FBE1019D5B61}.Release|Any CPU.Build.0 = Release|Any CPU
+		{39B75A9E-EE35-42EB-AA6E-86B6F61CEF96}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{39B75A9E-EE35-42EB-AA6E-86B6F61CEF96}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{39B75A9E-EE35-42EB-AA6E-86B6F61CEF96}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{39B75A9E-EE35-42EB-AA6E-86B6F61CEF96}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

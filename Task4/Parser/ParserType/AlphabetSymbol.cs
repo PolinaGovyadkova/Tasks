@@ -9,6 +9,8 @@ namespace Parser
 {
     public class AlphabetSymbol : BaseParser
     {
+
+        public override Regex MatrixRegex => new Regex(@"[a-zA-Z]$");
         public override IEnumerable TryParse(IEnumerable<string> matrix, out Matrix extendedMatrix)
         {
             var representation = matrix.ToList();

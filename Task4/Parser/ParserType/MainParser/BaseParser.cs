@@ -7,7 +7,7 @@ namespace Parser
 {
     public abstract class BaseParser
     {
-        public Regex MatrixRegex { get; }
+        public abstract Regex MatrixRegex { get; }
 
         public virtual bool IsCorrectElement(string element) => MatrixRegex.IsMatch(element);
 

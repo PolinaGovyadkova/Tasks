@@ -59,5 +59,16 @@ namespace Gauss.Algorithm
                 StraightAlgorithm.Invoke(row);
             }
         }
+
+        public override string ToString() => "Distributed system";
+        public override bool Equals(object obj)
+        {
+            if (obj != null && obj.GetType() != GetType())
+                return false;
+            DistributedLinearSystem distributedLinearSystem = (DistributedLinearSystem)obj;
+            return distributedLinearSystem != null && (VectorX == distributedLinearSystem.VectorX && Matrix == distributedLinearSystem.Matrix);
+        }
+
+        public override int GetHashCode() => unchecked(Matrix.GetHashCode() + StraightAlgorithm.GetHashCode() + ReverseAlgorithm.GetHashCode() + GaussSolve().GetHashCode());
     }
 }

@@ -67,5 +67,19 @@ namespace Gauss.Algorithm
                 throw new GaussException(e.Message);
             }
         }
+
+        public override string ToString() => "Linear system";
+        public override bool Equals(object obj)
+        {
+            if (obj != null && obj.GetType() != GetType())
+                return false;
+            LinearSystem linearSystem = (LinearSystem)obj;
+            return linearSystem != null && (VectorX == linearSystem.VectorX && Matrix == linearSystem.Matrix);
+        }
+
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
+        }
     }
 }

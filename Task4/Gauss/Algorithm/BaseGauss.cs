@@ -10,5 +10,14 @@ namespace Gauss.Algorithm
         protected abstract Action<int> ReverseAlgorithm { get; }
 
         public abstract string GaussSolve();
+        public override string ToString() => $@"Matrix {Matrix}";
+        public override bool Equals(object obj)
+        {
+            if (obj != null && obj.GetType() != GetType())
+                return false;
+            BaseGauss baseGauss = (BaseGauss)obj;
+            return baseGauss != null && (Matrix == baseGauss.Matrix && ReverseAlgorithm == baseGauss.ReverseAlgorithm && StraightAlgorithm == baseGauss.StraightAlgorithm);
+        }
+        public override int GetHashCode() => unchecked(Matrix.GetHashCode() + StraightAlgorithm.GetHashCode() + ReverseAlgorithm.GetHashCode() + GaussSolve().GetHashCode());
     }
 }

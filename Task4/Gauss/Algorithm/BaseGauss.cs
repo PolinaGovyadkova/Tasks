@@ -1,0 +1,14 @@
+﻿using Gauss.MatrixMethod;
+using System;
+
+namespace Gauss.Algorithm
+{
+    public abstract class BaseGauss
+    {
+        public Matrix Matrix { get; set; }
+        protected abstract Action<int> StraightAlgorithm { get; }
+        protected abstract Action<int> ReverseAlgorithm { get; }
+
+        public abstract string GaussSolve();
+    }
+}

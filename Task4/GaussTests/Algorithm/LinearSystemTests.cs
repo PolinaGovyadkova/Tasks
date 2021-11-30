@@ -1,17 +1,18 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Gauss.Algorithm;
+﻿using Gauss.MatrixMethod;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Gauss.MatrixMethod;
 
 namespace Gauss.Algorithm.Tests
 {
+    /// <summary>
+    /// LinearSystemTests
+    /// </summary>
     [TestClass()]
     public class LinearSystemTests
     {
+        /// <summary>
+        /// Gausses the linear system solve test.
+        /// </summary>
         [TestMethod()]
         public void GaussLinearSystemSolveTest()
         {
@@ -28,6 +29,9 @@ namespace Gauss.Algorithm.Tests
             Assert.AreEqual(resultString, result);
         }
 
+        /// <summary>
+        /// Gausses the solve test.
+        /// </summary>
         [TestMethod()]
         public void GaussSolveTest()
         {
@@ -44,6 +48,9 @@ namespace Gauss.Algorithm.Tests
             Assert.AreEqual(resultString, result);
         }
 
+        /// <summary>
+        /// Gausses the solve exception test.
+        /// </summary>
         [TestMethod()]
         [ExpectedException(typeof(GaussException))]
         public void GaussSolveExceptionTest()
@@ -61,6 +68,9 @@ namespace Gauss.Algorithm.Tests
             Assert.AreEqual(resultString, result);
         }
 
+        /// <summary>
+        /// Tests the result comparison.
+        /// </summary>
         [TestMethod]
         public void TestResultComparison()
         {

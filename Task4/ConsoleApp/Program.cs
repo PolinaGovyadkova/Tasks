@@ -1,4 +1,4 @@
-﻿using ClientSrever;
+﻿using ClientServer;
 using Gauss.Algorithm;
 using Gauss.MatrixMethod;
 using System;

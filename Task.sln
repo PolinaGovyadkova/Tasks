@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31321.278
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClientSrever", "Task4\ClientSrever\ClientSrever.csproj", "{C7250873-1B9D-4C30-949B-D4AE96CC6001}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClientServer", "Task4\ClientSrever\ClientServer.csproj", "{C7250873-1B9D-4C30-949B-D4AE96CC6001}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gauss", "Task4\Gauss\Gauss.csproj", "{83B686D5-3FA4-4CA3-A9F7-AE759DB83848}"
 EndProject

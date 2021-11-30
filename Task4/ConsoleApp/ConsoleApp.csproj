@@ -51,9 +51,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ClientSrever\ClientSrever.csproj">
+    <ProjectReference Include="..\ClientSrever\ClientServer.csproj">
       <Project>{c7250873-1b9d-4c30-949b-d4ae96cc6001}</Project>
-      <Name>ClientSrever</Name>
+      <Name>ClientServer</Name>
     </ProjectReference>
     <ProjectReference Include="..\Gauss\Gauss.csproj">
       <Project>{83B686D5-3FA4-4CA3-A9F7-AE759DB83848}</Project>

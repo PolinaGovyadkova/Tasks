@@ -63,9 +63,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ClientSrever\ClientSrever.csproj">
+    <ProjectReference Include="..\ClientSrever\ClientServer.csproj">
       <Project>{c7250873-1b9d-4c30-949b-d4ae96cc6001}</Project>
-      <Name>ClientSrever</Name>
+      <Name>ClientServer</Name>
     </ProjectReference>
     <ProjectReference Include="..\Gauss\Gauss.csproj">
       <Project>{83b686d5-3fa4-4ca3-a9f7-ae759db83848}</Project>

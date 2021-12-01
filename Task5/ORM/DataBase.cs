@@ -9,45 +9,15 @@ using ORM.Table;
 
 namespace ORM
 {
-    public class DataBase
+    public class DataBase : ConnectionString
     {
-        private DataBaseSet<ClientBookHistory> _clientBookHistory;
-        private DataBaseSet<Author> _authors;
-        private DataBaseSet<Book> _books;
-        private DataBaseSet<Client> _clients;
-        private DataBaseSet<Genre> _genres;
+        public DataBaseSet<Client> Clients { get; set; }
+        public DataBaseSet<Book> Books { get; set; }
+        public DataBaseSet<Genre> Genres { get; set; }
+        public DataBaseSet<Author> Authors { get; set; }
+        public DataBaseSet<ClientBookHistory> ClientBookHistory { get; set; }
 
-        public DataBaseSet<Client> Clients
-        {
-            get => _clients;
-            set => _clients = value;
-        }
-
-        public DataBaseSet<Book> Books
-        {
-            get => _books;
-            set => _books = value;
-        }
-
-        public DataBaseSet<Genre> Genres
-        {
-            get => _genres;
-            set => _genres = value;
-        }
-
-        public DataBaseSet<Author> Authors
-        {
-            get => _authors;
-            set => _authors = value;
-        }
-
-        public DataBaseSet<ClientBookHistory> ClientBookHistory
-        {
-            get => _clientBookHistory;
-            set => _clientBookHistory = value;
-        }
-
-        private DataBase()
+        public DataBase()
         {
             Clients = new DataBaseSet<Client>();
             Books = new DataBaseSet<Book>();

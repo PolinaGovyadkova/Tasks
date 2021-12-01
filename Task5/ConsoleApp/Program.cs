@@ -9,6 +9,7 @@ using DataBaseConnection;
 using ORM.Creator;
 using ORM.DAO;
 using ORM.Table;
+using ReportCreator.WorkWithData;
 
 namespace ConsoleApp
 {
@@ -16,16 +17,24 @@ namespace ConsoleApp
     {
         static void Main(string[] args)
         {
-            ConnectionString connectionString = new ConnectionString();
-            Functional<Author> crud = new Functional<Author>(connectionString.GetConnection());
-            var expected = new Author()
-            {
-                Id = 3,
-                Name = "Albert",
-                Surname = "Smash",
-                Patronymic = "Smith"
-            };
-            crud.UpdateElement(1,expected);
+            DataBase _database = new DataBase();
+            var books = _database.Books.ToList();
+            var authors = _database.Authors.ToList();
+            var genres = _database.Genres.ToList();
+            var clientBookHistory = _database.ClientBookHistory.ToList();
+            var result = ReportMethod.GetQuantityBorrowedBooks(books, clientBookHistory);
+            //var result = ReportMethod.GetPopularGenre(books, genres).Name;
+            Console.WriteLine(result);
+            //ConnectionString connectionString = new ConnectionString();
+            //Functional<Author> crud = new Functional<Author>(connectionString.GetConnection());
+            //var expected = new Author()
+            //{
+            //    Id = 3,
+            //    Name = "Albert",
+            //    Surname = "Smash",
+            //    Patronymic = "Smith"
+            //};
+            //crud.UpdateElement(1,expected);
             //Functional<ClientBookHistory> crud = new Functional<ClientBookHistory>(connectionString.GetConnection());
             //List<ClientBookHistory> result = crud.ReadElement();
             //var expected = new Book()

@@ -121,37 +121,40 @@ namespace ORM.DAO
         }
         public List<T> ReadElement()
         {
-            var allElements = new List<T>();
-            try
-            {
-                _sqlConnectionString.Open();
-                var readAll = $"read * from [{_type.Name}]";
-                var sqlCommand = new SqlCommand(readAll, _sqlConnectionString);
-                var reader = sqlCommand.ExecuteReader();
-                if (reader.HasRows)
-                {
-                    while (reader.Read())
-                    {
-                        if (_factory != null)
-                        {
-                            object newObject = (BaseTableElement)_factory.NewObject(_type.FullName);
-                            for (var i = 0; i < reader.FieldCount; i++)
-                            {
-                                var information = newObject.GetType().GetProperty(reader.GetName(i));
-                                if (!(reader.GetValue(i) is DBNull)) information?.SetValue(newObject, reader.GetValue(i));
-                            }
+            _sqlConnectionString.Open();
 
-                            allElements.Add(newObject as T);
+            var sqlSelectCommand = $"SELECT * FROM [{typeof(T).Name}]";
+            var sqlCommand = new SqlCommand(sqlSelectCommand, _sqlConnectionString);
+            SqlDataReader reader = sqlCommand.ExecuteReader();
+
+            var list = new List<T>();
+            var obj = _factory.NewObject<T>();
+
+            int columnsNumber = reader.FieldCount;
+
+            if (reader.HasRows)
+            {
+                while (reader.Read())
+                {
+                    for (var i = 0; i < columnsNumber; i++)
+                    {
+                        string fieldName = reader.GetName(i);
+                        PropertyInfo propInfo = obj.GetType().GetProperty(fieldName);
+
+                        if (!(reader.GetValue(i) is DBNull))
+                        {
+                            propInfo?.SetValue(obj, reader.GetValue(i));
                         }
                     }
+
+                    list.Add((T)obj);
+                    obj = _factory.NewObject(typeof(T).FullName);
                 }
-                _sqlConnectionString.Close();
-                return allElements;
             }
-            catch
-            {
-                throw new Exception("Sql query error.");
-            }
+
+            _sqlConnectionString.Close();
+
+            return list;
         }
 
 

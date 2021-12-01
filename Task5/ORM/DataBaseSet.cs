@@ -12,15 +12,14 @@ using ORM.Table;
 
 namespace ORM
 {
-    public class DataBaseSet<T> where T : BaseTableElement
+    public class DataBaseSet<T> : ConnectionString, IEnumerable<T>  where T : BaseTableElement
     {
         private readonly Functional<T> _baseMethods;
         private readonly List<T> _listModel;
 
         public DataBaseSet()
         {
-            var sqlConnection = new SqlConnection();
-            _baseMethods = new Functional<T>(sqlConnection);
+            _baseMethods = new Functional<T>(GetConnection());
             _listModel = _baseMethods.ReadElement();
         }
 
@@ -40,6 +39,8 @@ namespace ORM
             _baseMethods.DeleteElement(id);
             _listModel.Remove(_listModel.FirstOrDefault(o => o.Id == id));
         }
-       
+        public IEnumerator<T> GetEnumerator() => _listModel.GetEnumerator();
+
+        IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
     }
 }

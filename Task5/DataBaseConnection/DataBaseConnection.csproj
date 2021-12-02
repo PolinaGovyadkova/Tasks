@@ -45,5 +45,17 @@
     <Compile Include="ConnectionString.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="DataBase\FullTable.sql" />
+    <Content Include="DataBase\Key\FK_Author_Book.sql" />
+    <Content Include="DataBase\Key\FK_Book_ClientBookHistory.sql" />
+    <Content Include="DataBase\Key\FK_Client_ClientBookHistory.sql" />
+    <Content Include="DataBase\Key\FK_Genre_Book.sql" />
+    <Content Include="DataBase\Table\Author.sql" />
+    <Content Include="DataBase\Table\Book.sql" />
+    <Content Include="DataBase\Table\Client.sql" />
+    <Content Include="DataBase\Table\ClientBookHistory.sql" />
+    <Content Include="DataBase\Table\Genre.sql" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

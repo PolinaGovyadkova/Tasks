@@ -1,0 +1,4 @@
+ALTER TABLE Book
+ADD CONSTRAINT FK_Author_Book
+FOREIGN KEY (AuthorId) 
+REFERENCES Author (Id)

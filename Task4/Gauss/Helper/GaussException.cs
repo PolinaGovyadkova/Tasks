@@ -16,5 +16,13 @@ namespace Gauss
             : base("No solution can be found: \r\n" + message)
         {
         }
+        public override bool Equals(object obj)
+        {
+            if (obj != null && obj.GetType() != GetType())
+                return false;
+            GaussException baseGauss = (GaussException)obj;
+            return baseGauss != null;
+        }
+        public override int GetHashCode() => unchecked(base.GetHashCode());
     }
 }

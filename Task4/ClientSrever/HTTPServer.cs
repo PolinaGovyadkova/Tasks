@@ -95,7 +95,7 @@ namespace ClientServer
             if (obj != null && obj.GetType() != GetType())
                 return false;
             HTTPServer httpServer = (HTTPServer)obj;
-            return httpServer != null;
+            return httpServer != null && _output == httpServer._output && _connectionString == httpServer._connectionString && _listener == httpServer._listener;
         }
 
         /// <summary>
@@ -104,6 +104,6 @@ namespace ClientServer
         /// <returns>
         /// A hash code for this instance, suitable for use in hashing algorithms and data structures like a hash table.
         /// </returns>
-        public override int GetHashCode() => _listener.GetHashCode();
+        public override int GetHashCode() => _listener.GetHashCode() + _connectionString.GetHashCode() + _output.GetHashCode();
     }
 }

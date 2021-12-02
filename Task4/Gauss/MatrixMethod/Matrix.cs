@@ -180,10 +180,8 @@ namespace Gauss.MatrixMethod
             {
                 for (var j = 0; j < ColumnCount; j++)
                 {
-                    if (Math.Abs(_matrix[i, j] - other._matrix[i, j]) > 100 * double.Epsilon)
-                    {
-                        return false;
-                    }
+                    if (Math.Abs(_matrix[i, j] - other._matrix[i, j]) > 100 * double.Epsilon) return false;
+                    
                 }
             }
             return true;
@@ -195,6 +193,6 @@ namespace Gauss.MatrixMethod
         /// <returns>
         /// A hash code for this instance, suitable for use in hashing algorithms and data structures like a hash table.
         /// </returns>
-        public override int GetHashCode() => _matrix.GetHashCode();
+        public override int GetHashCode() => unchecked(RowCount.GetHashCode() + ColumnCount.GetHashCode() + _matrix.GetHashCode());
     }
 }

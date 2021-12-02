@@ -8,7 +8,7 @@ namespace Gauss.Algorithm.Tests
     /// LinearSystemTests
     /// </summary>
     [TestClass()]
-    public class LinearSystemTests
+    public class AlgorithmSystemTests
     {
         /// <summary>
         /// Gausses the linear system solve test.
@@ -82,10 +82,10 @@ namespace Gauss.Algorithm.Tests
             };
             var matrix1 = new Matrix(matrix);
             var algorithmDistributed = new DistributedLinearSystem(matrix1);
-            var resultDistributed = algorithmDistributed.GaussSolve();
+            algorithmDistributed.GaussSolve();
             var algorithm = new LinearSystem(matrix1);
-            var result = algorithm.GaussSolve();
-            for (int i = 0; i < matrix1.LastColumn().Length; i++)
+            algorithm.GaussSolve();
+            for (var i = 0; i < matrix1.LastColumn().Length; i++)
             {
                 Assert.IsTrue(Math.Abs(algorithm.VectorX[i] - algorithmDistributed.VectorX[i]) < 0.001);
             }

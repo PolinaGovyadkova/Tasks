@@ -143,9 +143,6 @@ namespace Gauss.Algorithm
         /// <returns>
         /// A hash code for this instance, suitable for use in hashing algorithms and data structures like a hash table.
         /// </returns>
-        public override int GetHashCode()
-        {
-            return base.GetHashCode();
-        }
+        public override int GetHashCode() => VectorX.GetHashCode() + GaussSolve().GetHashCode() + ReverseAlgorithm.GetHashCode() + StraightAlgorithm.GetHashCode() + GaussSolve().GetHashCode();
     }
 }

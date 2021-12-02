@@ -145,7 +145,7 @@ namespace ClientServer
             if (obj != null && obj.GetType() != GetType())
                 return false;
             TCPClient tcpClient = (TCPClient)obj;
-            return tcpClient != null;
+            return tcpClient != null && _stream == tcpClient._stream && _client == tcpClient._client;
         }
 
         /// <summary>
@@ -154,6 +154,6 @@ namespace ClientServer
         /// <returns>
         /// A hash code for this instance, suitable for use in hashing algorithms and data structures like a hash table.
         /// </returns>
-        public override int GetHashCode() => _client.GetHashCode();
+        public override int GetHashCode() => _client.GetHashCode() + _stream.GetHashCode();
     }
 }

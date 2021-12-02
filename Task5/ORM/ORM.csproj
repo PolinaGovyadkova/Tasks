@@ -42,11 +42,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Creator\IFactory.cs" />
-    <Compile Include="DataBase.cs" />
+    <Compile Include="SQLException.cs" />
+    <Compile Include="BD\DataBase.cs" />
     <Compile Include="Creator\Factory.cs" />
     <Compile Include="DAO\Functional.cs" />
     <Compile Include="DAO\IFunctional.cs" />
-    <Compile Include="DataBaseSet.cs" />
+    <Compile Include="BD\DataBaseSet.cs" />
     <Compile Include="Table\Author.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Table\BaseTableElement.cs" />

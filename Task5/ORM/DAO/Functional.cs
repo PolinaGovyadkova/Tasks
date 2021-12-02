@@ -1,11 +1,11 @@
-﻿using System;
+﻿using ORM.Creator;
+using ORM.Table;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Reflection;
-using ORM.Creator;
-using ORM.Table;
 
 namespace ORM.DAO
 {
@@ -20,13 +20,13 @@ namespace ORM.DAO
             _sqlConnectionString = sqlConnectionString;
             _factory = new Factory();
             _type = typeof(T);
-        } 
+        }
 
         public T ReadElement(int idElement)
         {
             _sqlConnectionString.Open();
             object newObject = null;
-            var read = $"read * from [{_type.Name}] where id = @Id;";
+            var read = $"select * from [{_type.Name}] where id = @Id;";
             SqlDataReader reader;
             using (var sqlCommand = new SqlCommand(read, _sqlConnectionString))
             {
@@ -53,7 +53,7 @@ namespace ORM.DAO
         {
             var name = new List<string>();
             var create = $"insert into [{_type.Name}] (";
-            foreach (var property in typeof(T).GetProperties()) 
+            foreach (var property in typeof(T).GetProperties())
             {
                 if (Checker(property))
                 {
@@ -80,7 +80,7 @@ namespace ORM.DAO
                 {
                     sqlCommand.Parameters.AddWithValue($"@{name[i]}",
                         property.PropertyType == typeof(DateTime)
-                            ? $"{((DateTime) property.GetValue(newObject)):yyyy.MM.dd}"
+                            ? $"{((DateTime)property.GetValue(newObject)):yyyy.MM.dd}"
                             : $"{property.GetValue(newObject)}");
 
                     i++;
@@ -88,6 +88,7 @@ namespace ORM.DAO
             }
             Process(sqlCommand);
         }
+
         public void UpdateElement(int idElement, T newObject)
         {
             var update = $"update {_type.Name} SET ";
@@ -102,7 +103,7 @@ namespace ORM.DAO
                 if (Checker(property))
                     sqlCommand.Parameters.AddWithValue($"@{GetName(property)}",
                         property.PropertyType == typeof(DateTime)
-                            ? $"{((DateTime) property.GetValue(newObject)):yyyy.MM.dd}"
+                            ? $"{((DateTime)property.GetValue(newObject)):yyyy.MM.dd}"
                             : $"{property.GetValue(newObject)}");
             }
 
@@ -117,20 +118,20 @@ namespace ORM.DAO
             var sqlCommand = new SqlCommand(delete, _sqlConnectionString);
             sqlCommand.Parameters.AddWithValue("@Id", $"{idElement}");
             Process(sqlCommand);
-
         }
+
         public List<T> ReadElement()
         {
             _sqlConnectionString.Open();
 
-            var sqlSelectCommand = $"SELECT * FROM [{typeof(T).Name}]";
+            var sqlSelectCommand = $"select * FROM [{typeof(T).Name}]";
             var sqlCommand = new SqlCommand(sqlSelectCommand, _sqlConnectionString);
-            SqlDataReader reader = sqlCommand.ExecuteReader();
+            var reader = sqlCommand.ExecuteReader();
 
             var list = new List<T>();
             var obj = _factory.NewObject<T>();
 
-            int columnsNumber = reader.FieldCount;
+            var columnsNumber = reader.FieldCount;
 
             if (reader.HasRows)
             {
@@ -138,8 +139,8 @@ namespace ORM.DAO
                 {
                     for (var i = 0; i < columnsNumber; i++)
                     {
-                        string fieldName = reader.GetName(i);
-                        PropertyInfo propInfo = obj.GetType().GetProperty(fieldName);
+                        var fieldName = reader.GetName(i);
+                        var propInfo = obj.GetType().GetProperty(fieldName);
 
                         if (!(reader.GetValue(i) is DBNull))
                         {
@@ -153,10 +154,8 @@ namespace ORM.DAO
             }
 
             _sqlConnectionString.Close();
-
             return list;
         }
-
 
         private void Process(IDbCommand sqlCommand)
         {
@@ -166,13 +165,14 @@ namespace ORM.DAO
                 sqlCommand.ExecuteNonQuery();
                 _sqlConnectionString.Close();
             }
-            catch (Exception)
+            catch (Exception e)
             {
-                throw new Exception("Sql query error.");
+                throw new SQLException(e.Message);
             }
         }
 
         private static string GetName(PropertyInfo property) => property.Name;
+
         private static bool Checker(PropertyInfo property) => property != null && (GetName(property) != "Id" && property.PropertyType.BaseType != typeof(BaseTableElement));
     }
 }

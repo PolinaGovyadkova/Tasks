@@ -1,13 +1,7 @@
 ﻿using DataBaseConnection;
-using System.Data.SqlClient;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using ORM.Table;
 
-namespace ORM
+namespace ORM.BD
 {
     public class DataBase : ConnectionString
     {
@@ -25,6 +19,5 @@ namespace ORM
             Authors = new DataBaseSet<Author>();
             ClientBookHistory = new DataBaseSet<ClientBookHistory>();
         }
-       
     }
 }

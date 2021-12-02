@@ -10,10 +10,19 @@ using System.Threading.Tasks;
 
 namespace ReportWork.Types.Tests
 {
+    /// <summary>
+    /// PDFFileTests
+    /// </summary>
     [TestClass()]
     public class PDFFileTests
     {
+        /// <summary>
+        /// The PDF
+        /// </summary>
         readonly PDFFile _pdf = new PDFFile();
+        /// <summary>
+        /// Popular test.
+        /// </summary>
         [TestMethod()]
         public void PopularTypeTest()
         {
@@ -23,6 +32,9 @@ namespace ReportWork.Types.Tests
             Assert.IsTrue(textFromFile.Length != 0);
         }
 
+        /// <summary>
+        /// Borrowed book test.
+        /// </summary>
         [TestMethod()]
         public void BorrowedBookTest()
         {
@@ -32,6 +44,9 @@ namespace ReportWork.Types.Tests
             Assert.IsTrue(textFromFile.Length != 0);
         }
 
+        /// <summary>
+        /// Bad books test.
+        /// </summary>
         [TestMethod()]
         public void BadBooksTest()
         {

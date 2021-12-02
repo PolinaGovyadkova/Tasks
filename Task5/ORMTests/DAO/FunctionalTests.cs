@@ -10,11 +10,20 @@ using DataBaseConnection;
 
 namespace ORM.DAO.Tests
 {
+    /// <summary>
+    /// FunctionalTests
+    /// </summary>
     [TestClass()]
     public class FunctionalTests
     {
+        /// <summary>
+        /// The connection string
+        /// </summary>
         readonly ConnectionString _connectionString = new ConnectionString();
 
+        /// <summary>
+        /// Reads the element test.
+        /// </summary>
         [TestMethod()]
         public void ReadElementTest()
         {
@@ -24,6 +33,9 @@ namespace ORM.DAO.Tests
             Assert.AreEqual(result.ToString(), expected.ToString());
         }
 
+        /// <summary>
+        /// Reads the element all test.
+        /// </summary>
         [TestMethod()]
         public void ReadElementAllTest()
         {
@@ -31,6 +43,9 @@ namespace ORM.DAO.Tests
             Assert.IsNotNull(functional.ReadElement());
         }
 
+        /// <summary>
+        /// Reads the element exception test.
+        /// </summary>
         [TestMethod()]
         public void ReadElementExceptionTest()
         {
@@ -38,6 +53,9 @@ namespace ORM.DAO.Tests
             Assert.IsNull(functional.ReadElement(190));
         }
 
+        /// <summary>
+        /// Creates the delete read element test.
+        /// </summary>
         [TestMethod()]
         public void CreateDeleteReadElementTest()
         {
@@ -48,6 +66,9 @@ namespace ORM.DAO.Tests
             Assert.AreEqual(result.ToString(), GetAuthor().ToString());
         }
 
+        /// <summary>
+        /// Updates the element test.
+        /// </summary>
         [TestMethod()]
         public void UpdateElementTest()
         {
@@ -59,6 +80,10 @@ namespace ORM.DAO.Tests
 
             Assert.AreEqual(result.ToString(), expected.ToString());
         }
+        /// <summary>
+        /// Gets the author.
+        /// </summary>
+        /// <returns></returns>
         private static Author GetAuthor() => new Author { Id = 12, Name = "Test", Surname = "Tester", Patronymic = "Testovich" };
     }
 }

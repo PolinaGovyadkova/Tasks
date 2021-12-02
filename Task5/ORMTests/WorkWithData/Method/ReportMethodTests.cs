@@ -10,10 +10,19 @@ using ORM.Table;
 
 namespace ReportWork.WorkWithData.Method.Tests
 {
+    /// <summary>
+    /// ReportMethodTests
+    /// </summary>
     [TestClass()]
     public class ReportMethodTests
     {
+        /// <summary>
+        /// The database
+        /// </summary>
         readonly DataBase _database = new DataBase();
+        /// <summary>
+        /// Mosts the popular author test.
+        /// </summary>
         [TestMethod()]
         public void MostPopularAuthorTest()
         {
@@ -23,6 +32,9 @@ namespace ReportWork.WorkWithData.Method.Tests
             Assert.AreEqual("Napoleon Hill", author);
         }
 
+        /// <summary>
+        /// Gets the bad book list test.
+        /// </summary>
         [TestMethod()]
         public void GetBadBookListTest()
         {
@@ -34,6 +46,9 @@ namespace ReportWork.WorkWithData.Method.Tests
             CollectionAssert.AreEqual(result, nameBooks);
         }
 
+        /// <summary>
+        /// Gets the popular genre test.
+        /// </summary>
         [TestMethod()]
         public void GetPopularGenreTest()
         {
@@ -45,6 +60,9 @@ namespace ReportWork.WorkWithData.Method.Tests
             Assert.AreEqual(result, expected);
         }
 
+        /// <summary>
+        /// Gets the most reading subscriber test.
+        /// </summary>
         [TestMethod()]
         public void GetMostReadingSubscriberTest()
         {
@@ -55,6 +73,9 @@ namespace ReportWork.WorkWithData.Method.Tests
             Assert.AreEqual("Anderson Taft Guryevich", clientName);
         }
 
+        /// <summary>
+        /// Eaches the subscriber books for date test.
+        /// </summary>
         [TestMethod()]
         public void EachSubscriberBooksForDateTest()
         {

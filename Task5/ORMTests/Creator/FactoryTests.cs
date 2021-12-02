@@ -9,9 +9,15 @@ using ORM.Table;
 
 namespace ORM.Creator.Tests
 {
+    /// <summary>
+    /// FactoryTests
+    /// </summary>
     [TestClass()]
     public class FactoryTests
     {
+        /// <summary>
+        /// Creates new objectauthortest.
+        /// </summary>
         [TestMethod()]
         public void NewObjectAuthorTest()
         {
@@ -21,6 +27,9 @@ namespace ORM.Creator.Tests
             Assert.AreEqual(result.ToString(), expected.ToString());
         }
 
+        /// <summary>
+        /// Creates new objectclienttest.
+        /// </summary>
         [TestMethod()]
         public void NewObjectClientTest()
         {
@@ -30,6 +39,9 @@ namespace ORM.Creator.Tests
             Assert.AreEqual(result.ToString(), expected.ToString());
         }
 
+        /// <summary>
+        /// Creates new objectgenretest.
+        /// </summary>
         [TestMethod()]
         public void NewObjectGenreTest()
         {
@@ -39,6 +51,9 @@ namespace ORM.Creator.Tests
             Assert.AreEqual(result.ToString(), expected.ToString());
         }
 
+        /// <summary>
+        /// Creates new objectbooktest.
+        /// </summary>
         [TestMethod()]
         public void NewObjectBookTest()
         {
@@ -48,6 +63,9 @@ namespace ORM.Creator.Tests
             Assert.AreEqual(result.ToString(), expected.ToString());
         }
 
+        /// <summary>
+        /// Creates new objectclientbookhistorytest.
+        /// </summary>
         [TestMethod()]
         public void NewObjectClientBookHistoryTest()
         {

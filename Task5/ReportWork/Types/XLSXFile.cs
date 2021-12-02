@@ -10,8 +10,16 @@ using ReportWork.WorkWithData.Method;
 
 namespace ReportWork.Types
 {
+    /// <summary>
+    /// XLSXFile
+    /// </summary>
+    /// <seealso cref="ReportWork.WorkWithData.BaseReport" />
     public class XLSXFile : BaseReport
     {
+        /// <summary>
+        /// Popular  type.
+        /// </summary>
+        /// <param name="file">The file.</param>
         public override void PopularType(string file)
         {
             var application = new Application();
@@ -37,6 +45,12 @@ namespace ReportWork.Types
             Checker(file, application, workBook);
         }
 
+        /// <summary>
+        /// Borrowed book.
+        /// </summary>
+        /// <param name="start">The start.</param>
+        /// <param name="finish">The finish.</param>
+        /// <param name="file">The file.</param>
         public override void BorrowedBook(DateTime start, DateTime finish, string file)
         {
             var application = new Application();
@@ -53,6 +67,10 @@ namespace ReportWork.Types
             Checker(file, application, workBook);
         }
 
+        /// <summary>
+        /// Bad books.
+        /// </summary>
+        /// <param name="file">The file.</param>
         public override void BadBooks(string file)
         {
             var application = new Application();
@@ -80,6 +98,13 @@ namespace ReportWork.Types
             Checker(file, application, workBook);
         }
 
+        /// <summary>
+        /// Checkers the specified file.
+        /// </summary>
+        /// <param name="file">The file.</param>
+        /// <param name="application">The application.</param>
+        /// <param name="workBook">The work book.</param>
+        /// <exception cref="ReportWork.FileException"></exception>
         private static void Checker(string file, Application application, Workbook workBook)
         {
             try
@@ -92,5 +117,20 @@ namespace ReportWork.Types
                 throw new FileException(e.Message);
             }
         }
+        /// <summary>
+        /// Returns a hash code for this instance.
+        /// </summary>
+        /// <returns>
+        /// A hash code for this instance, suitable for use in hashing algorithms and data structures like a hash table. 
+        /// </returns>
+        public override int GetHashCode() => base.GetHashCode();
+        /// <summary>
+        /// Determines whether the specified <see cref="System.Object" />, is equal to this instance.
+        /// </summary>
+        /// <param name="obj">The <see cref="System.Object" /> to compare with this instance.</param>
+        /// <returns>
+        ///   <c>true</c> if the specified <see cref="System.Object" /> is equal to this instance; otherwise, <c>false</c>.
+        /// </returns>
+        public override bool Equals(object obj) => obj is XLSXFile;
     }
 }

@@ -9,10 +9,19 @@ using System.Threading.Tasks;
 
 namespace ReportWork.Types.Tests
 {
+    /// <summary>
+    /// TXTFileTests
+    /// </summary>
     [TestClass()]
     public class TXTFileTests
     {
+        /// <summary>
+        /// The text
+        /// </summary>
         TXTFile txt = new TXTFile();
+        /// <summary>
+        /// Popular type test.
+        /// </summary>
         [TestMethod()]
         public void PopularTypeTest()
         {
@@ -22,6 +31,9 @@ namespace ReportWork.Types.Tests
             Assert.IsTrue(textFromFile.Length != 0);
         }
 
+        /// <summary>
+        /// Borrowed book test.
+        /// </summary>
         [TestMethod()]
         public void BorrowedBookTest()
         {
@@ -31,6 +43,9 @@ namespace ReportWork.Types.Tests
             Assert.IsTrue(textFromFile.Length != 0);
         }
 
+        /// <summary>
+        /// Bad books test.
+        /// </summary>
         [TestMethod()]
         public void BadBooksTest()
         {
